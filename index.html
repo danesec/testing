@@ -3,120 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial Transactions</title>
+    <title>Financial Tracker</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <!-- Stats Box -->
-        <div id="stats-box">
-            <h3>Financial Stats</h3>
-            <div id="stats">
-                <p>Total Donations: $<span id="donations">0</span></p>
-                <p>Total Registrations: <span id="registrations">0</span></p>
-                <p>Total Credit Card Fees: $<span id="fees">0</span></p>
-                <p>Net: $<span id="net">0</span></p>
-            </div>
-        </div>
-
-        <!-- Graph and Filters -->
-        <div class="top-section">
-            <div id="chart-container">
-                <img src="your-chart-placeholder.png" alt="Graph" id="chart-image">
-            </div>
-            <div id="filter-section">
-                <div class="filter">
-                    <label for="filter-select">All</label>
-                    <select id="filter-select">
-                        <option value="All">All</option>
-                        <option value="Voided">Voided</option>
-                        <option value="Store Purchase">Store Purchase</option>
-                        <option value="Sponsor">Sponsor</option>
-                        <option value="Donation">Donation</option>
-                        <option value="Registration">Registration</option>
-                        <option value="Manual Addition">Manual Addition</option>
-                    </select>
-                </div>
-                <div class="filter">
-                    <label for="search">Search</label>
-                    <input type="text" id="search" placeholder="Search transactions...">
-                </div>
-            </div>
-        </div>
-
-        <!-- Revenue Table -->
-        <h2>Revenue</h2>
-        <button id="add-revenue">Add Revenue</button>
-        <button id="export-revenue">Export Transactions to CSV</button>
-        <table id="revenue-table">
+        <h1>Financial Tracker</h1>
+        <button id="addRevenueBtn">Add Revenue</button>
+        <button id="addExpenseBtn">Add Expense</button>
+        <table id="entriesTable">
             <thead>
                 <tr>
                     <th>Type</th>
-                    <th>Date</th>
-                    <th>Receipt #</th>
-                    <th>Payment</th>
-                    <th>Name</th>
-                    <th>Contact</th>
-                    <th>Subtotal</th>
-                    <th>Fee</th>
-                    <th>Notes</th>
+                    <th>Description</th>
+                    <th>Amount</th>
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody id="revenue-body">
-                <!-- Example Revenue Row -->
-                <tr data-type="Donation">
-                    <td>Donation</td>
-                    <td>12/11/2024</td>
-                    <td>12345</td>
-                    <td>$100</td>
-                    <td>John Doe</td>
-                    <td>555-1234</td>
-                    <td>$100</td>
-                    <td>$5</td>
-                    <td>Charity Event</td>
-                    <td><button class="void">Void</button> <button class="edit">Edit</button> <button class="delete">Delete</button></td>
-                </tr>
-                <!-- More rows will be dynamically added -->
-            </tbody>
-        </table>
-
-        <!-- Expenses Table -->
-        <h2>Expenses</h2>
-        <button id="add-expense">Add Expense</button>
-        <button id="export-expenses">Export All Finances to CSV</button>
-        <table id="expenses-table">
-            <thead>
+            <tbody id="entriesTableBody">
+                <!-- Default entries -->
                 <tr>
-                    <th>Type</th>
-                    <th>Date</th>
-                    <th>Receipt #</th>
-                    <th>Payment</th>
-                    <th>Name</th>
-                    <th>Contact</th>
-                    <th>Subtotal</th>
-                    <th>Fee</th>
-                    <th>Notes</th>
-                    <th>Actions</th>
+                    <td>Revenue</td>
+                    <td>Sample Donation</td>
+                    <td>$100</td>
+                    <td>
+                        <button class="editBtn">Edit</button>
+                        <button class="deleteBtn">Delete</button>
+                        <button class="voidBtn">Void</button>
+                    </td>
                 </tr>
-            </thead>
-            <tbody id="expenses-body">
-                <!-- Example Expense Row -->
-                <tr data-type="Manual Addition">
-                    <td>Manual Addition</td>
-                    <td>12/10/2024</td>
-                    <td>98765</td>
-                    <td>$50</td>
-                    <td>Jane Doe</td>
-                    <td>555-5678</td>
-                    <td>$50</td>
-                    <td>$3</td>
+                <tr>
+                    <td>Expense</td>
                     <td>Event Catering</td>
-                    <td><button class="void">Void</button> <button class="edit">Edit</button> <button class="delete">Delete</button></td>
+                    <td>$50</td>
+                    <td>
+                        <button class="editBtn">Edit</button>
+                        <button class="deleteBtn">Delete</button>
+                        <button class="voidBtn">Void</button>
+                    </td>
                 </tr>
-                <!-- More rows will be dynamically added -->
             </tbody>
         </table>
+    </div>
+
+    <!-- Modals -->
+    <div id="revenueModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal="revenueModal">&times;</span>
+            <h2>Add Revenue</h2>
+            <form id="revenueForm">
+                <label for="revenueDescription">Description</label>
+                <input type="text" id="revenueDescription" name="description" required>
+                <label for="revenueAmount">Amount</label>
+                <input type="number" id="revenueAmount" name="amount" required>
+                <button type="submit">Add Revenue</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="expenseModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal="expenseModal">&times;</span>
+            <h2>Add Expense</h2>
+            <form id="expenseForm">
+                <label for="expenseDescription">Description</label>
+                <input type="text" id="expenseDescription" name="description" required>
+                <label for="expenseAmount">Amount</label>
+                <input type="number" id="expenseAmount" name="amount" required>
+                <button type="submit">Add Expense</button>
+            </form>
+        </div>
     </div>
 
     <script src="scripts.js"></script>

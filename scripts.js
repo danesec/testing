@@ -38,6 +38,15 @@ function setupEventListeners() {
 
     // Search Revenue Table
     document.getElementById('revenueSearch').addEventListener('input', filterTable);
+
+    // Add event listeners for dynamic 'Edit' and 'Delete' buttons
+    document.addEventListener('click', (event) => {
+        if (event.target.classList.contains('editBtn')) {
+            handleEdit(event.target.closest('tr'));
+        } else if (event.target.classList.contains('deleteBtn')) {
+            handleDelete(event.target.closest('tr'));
+        }
+    });
 }
 
 function addEntry(type) {
@@ -109,4 +118,14 @@ function calculateTotal(tableBodyId) {
     });
 
     return total;
+}
+
+function handleEdit(row) {
+    // Implement edit functionality here
+    console.log('Edit button clicked for row:', row);
+}
+
+function handleDelete(row) {
+    row.remove();
+    updateSummary();
 }

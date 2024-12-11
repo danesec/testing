@@ -1,87 +1,62 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 .container {
     width: 80%;
     margin: 0 auto;
-    padding: 20px;
+    text-align: center;
 }
 
-h2 {
-    margin-bottom: 10px;
-}
-
-#stats-box {
-    background-color: #ddd;
-    padding: 15px;
-    margin-bottom: 20px;
-}
-
-#stats {
-    font-size: 14px;
-}
-
-#chart-container {
-    display: inline-block;
-    width: 45%;
-}
-
-#filter-section {
-    display: inline-block;
-    width: 50%;
-}
-
-.filter {
-    margin-bottom: 10px;
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
 }
 
 table {
     width: 100%;
+    margin-top: 20px;
     border-collapse: collapse;
-    margin-bottom: 20px;
 }
 
 th, td {
-    padding: 10px;
-    text-align: left;
     border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
 }
 
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    cursor: pointer;
-    margin-right: 5px;
+th {
+    background-color: #f4f4f4;
 }
 
-button:hover {
-    background-color: #45a049;
-}
-
-input[type="text"], select {
-    padding: 5px;
-    font-size: 14px;
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
 }
 
-#add-revenue, #add-expense {
-    margin-top: 10px;
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    position: relative;
 }
 
-#stats-box p {
-    margin: 5px 0;
-}
-
-.void {
-    background-color: #f44336;
-}
-
-.void:hover {
-    background-color: #e53935;
+.modal .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
 }

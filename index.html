@@ -11,45 +11,79 @@
         <h1>Financial Tracker</h1>
     </header>
     <main>
-        <section>
-            <button id="addRevenueBtn" aria-label="Add Revenue">Add Revenue</button>
-            <button id="addExpenseBtn" aria-label="Add Expense">Add Expense</button>
+        <section id="financialSummary">
+            <p><strong>Total Revenue:</strong> $<span id="revenueSubtotal">0.00</span></p>
+            <p><strong>Total Expenses:</strong> $<span id="expensesSubtotal">0.00</span></p>
+            <p><strong>Net Balance:</strong> $<span id="totalBalance">0.00</span></p>
+        </section>
 
-            <h2>Revenue and Expenses</h2>
-            <div id="financialSummary">
-                <p><strong>Revenue Subtotal:</strong> $<span id="revenueSubtotal">100</span></p>
-                <p><strong>Expenses Subtotal:</strong> $<span id="expensesSubtotal">50</span></p>
-                <p><strong>Total (Revenue - Expenses):</strong> $<span id="totalBalance">50</span></p>
-            </div>
-
-            <table id="entriesTable">
+        <section id="revenueSection">
+            <h2>Revenue</h2>
+            <input type="text" id="revenueSearch" placeholder="Search by description or receipt number" aria-label="Search Revenue">
+            <button id="addRevenueBtn">Add Revenue</button>
+            <table id="revenueTable">
                 <thead>
                     <tr>
-                        <th>Type</th>
                         <th>Description</th>
+                        <th>Receipt #</th>
                         <th>Amount</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody id="entriesTableBody">
+                <tbody id="revenueTableBody">
+                    <!-- Default Revenue Entries -->
                     <tr>
-                        <td>Revenue</td>
-                        <td>Sample Donation</td>
-                        <td class="amount">$100</td>
+                        <td>Donation</td>
+                        <td>R001</td>
+                        <td>$150.00</td>
                         <td>
                             <button class="editBtn">Edit</button>
                             <button class="deleteBtn">Delete</button>
-                            <button class="voidBtn">Void</button>
                         </td>
                     </tr>
                     <tr>
-                        <td>Expense</td>
-                        <td>Event Catering</td>
-                        <td class="amount">$50</td>
+                        <td>Sponsorship</td>
+                        <td>R002</td>
+                        <td>$300.00</td>
                         <td>
                             <button class="editBtn">Edit</button>
                             <button class="deleteBtn">Delete</button>
-                            <button class="voidBtn">Void</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="expensesSection">
+            <h2>Expenses</h2>
+            <button id="addExpenseBtn">Add Expense</button>
+            <table id="expensesTable">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Receipt #</th>
+                        <th>Amount</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="expensesTableBody">
+                    <!-- Default Expenses Entries -->
+                    <tr>
+                        <td>Catering</td>
+                        <td>E001</td>
+                        <td>$100.00</td>
+                        <td>
+                            <button class="editBtn">Edit</button>
+                            <button class="deleteBtn">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Venue Rental</td>
+                        <td>E002</td>
+                        <td>$200.00</td>
+                        <td>
+                            <button class="editBtn">Edit</button>
+                            <button class="deleteBtn">Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -64,9 +98,11 @@
             <h2>Add Revenue</h2>
             <form id="revenueForm">
                 <label for="revenueDescription">Description</label>
-                <input type="text" id="revenueDescription" name="description" required>
+                <input type="text" id="revenueDescription" required>
+                <label for="revenueReceipt">Receipt #</label>
+                <input type="text" id="revenueReceipt" required>
                 <label for="revenueAmount">Amount</label>
-                <input type="number" id="revenueAmount" name="amount" required>
+                <input type="number" id="revenueAmount" required>
                 <button type="submit">Add Revenue</button>
             </form>
         </div>
@@ -78,9 +114,11 @@
             <h2>Add Expense</h2>
             <form id="expenseForm">
                 <label for="expenseDescription">Description</label>
-                <input type="text" id="expenseDescription" name="description" required>
+                <input type="text" id="expenseDescription" required>
+                <label for="expenseReceipt">Receipt #</label>
+                <input type="text" id="expenseReceipt" required>
                 <label for="expenseAmount">Amount</label>
-                <input type="number" id="expenseAmount" name="amount" required>
+                <input type="number" id="expenseAmount" required>
                 <button type="submit">Add Expense</button>
             </form>
         </div>

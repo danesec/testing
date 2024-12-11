@@ -7,44 +7,55 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <header>
         <h1>Financial Tracker</h1>
-        <button id="addRevenueBtn">Add Revenue</button>
-        <button id="addExpenseBtn">Add Expense</button>
-        <table id="entriesTable">
-            <thead>
-                <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                    <th>Amount</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="entriesTableBody">
-                <!-- Default entries -->
-                <tr>
-                    <td>Revenue</td>
-                    <td>Sample Donation</td>
-                    <td>$100</td>
-                    <td>
-                        <button class="editBtn">Edit</button>
-                        <button class="deleteBtn">Delete</button>
-                        <button class="voidBtn">Void</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Expense</td>
-                    <td>Event Catering</td>
-                    <td>$50</td>
-                    <td>
-                        <button class="editBtn">Edit</button>
-                        <button class="deleteBtn">Delete</button>
-                        <button class="voidBtn">Void</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    </header>
+    <main>
+        <section>
+            <button id="addRevenueBtn" aria-label="Add Revenue">Add Revenue</button>
+            <button id="addExpenseBtn" aria-label="Add Expense">Add Expense</button>
+
+            <h2>Revenue and Expenses</h2>
+            <div id="financialSummary">
+                <p><strong>Revenue Subtotal:</strong> $<span id="revenueSubtotal">100</span></p>
+                <p><strong>Expenses Subtotal:</strong> $<span id="expensesSubtotal">50</span></p>
+                <p><strong>Total (Revenue - Expenses):</strong> $<span id="totalBalance">50</span></p>
+            </div>
+
+            <table id="entriesTable">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="entriesTableBody">
+                    <tr>
+                        <td>Revenue</td>
+                        <td>Sample Donation</td>
+                        <td class="amount">$100</td>
+                        <td>
+                            <button class="editBtn">Edit</button>
+                            <button class="deleteBtn">Delete</button>
+                            <button class="voidBtn">Void</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Expense</td>
+                        <td>Event Catering</td>
+                        <td class="amount">$50</td>
+                        <td>
+                            <button class="editBtn">Edit</button>
+                            <button class="deleteBtn">Delete</button>
+                            <button class="voidBtn">Void</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
 
     <!-- Modals -->
     <div id="revenueModal" class="modal">

@@ -19,14 +19,20 @@
 
         <section id="revenueSection">
             <h2>Revenue</h2>
-            <input type="text" id="revenueSearch" placeholder="Search by description or receipt number" aria-label="Search Revenue">
+            <input type="text" id="revenueSearch" placeholder="Search by name, receipt, or contact" aria-label="Search Revenue">
             <button id="addRevenueBtn">Add Revenue</button>
             <table id="revenueTable">
                 <thead>
                     <tr>
-                        <th>Description</th>
+                        <th>Type</th>
+                        <th>Date</th>
                         <th>Receipt #</th>
-                        <th>Amount</th>
+                        <th>Payment</th>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>Subtotal</th>
+                        <th>Fee</th>
+                        <th>Notes</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -34,17 +40,14 @@
                     <!-- Default Revenue Entries -->
                     <tr>
                         <td>Donation</td>
+                        <td>2024-12-11</td>
                         <td>R001</td>
+                        <td>Credit Card</td>
+                        <td>John Doe</td>
+                        <td>john@example.com</td>
                         <td>$150.00</td>
-                        <td>
-                            <button class="editBtn">Edit</button>
-                            <button class="deleteBtn">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Sponsorship</td>
-                        <td>R002</td>
-                        <td>$300.00</td>
+                        <td>$5.00</td>
+                        <td>First Donation</td>
                         <td>
                             <button class="editBtn">Edit</button>
                             <button class="deleteBtn">Delete</button>
@@ -60,9 +63,15 @@
             <table id="expensesTable">
                 <thead>
                     <tr>
-                        <th>Description</th>
+                        <th>Type</th>
+                        <th>Date</th>
                         <th>Receipt #</th>
-                        <th>Amount</th>
+                        <th>Payment</th>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>Subtotal</th>
+                        <th>Fee</th>
+                        <th>Notes</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -70,17 +79,14 @@
                     <!-- Default Expenses Entries -->
                     <tr>
                         <td>Catering</td>
+                        <td>2024-12-10</td>
                         <td>E001</td>
+                        <td>Cash</td>
+                        <td>Jane Smith</td>
+                        <td>jane@example.com</td>
                         <td>$100.00</td>
-                        <td>
-                            <button class="editBtn">Edit</button>
-                            <button class="deleteBtn">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Venue Rental</td>
-                        <td>E002</td>
-                        <td>$200.00</td>
+                        <td>$0.00</td>
+                        <td>Event Catering</td>
                         <td>
                             <button class="editBtn">Edit</button>
                             <button class="deleteBtn">Delete</button>
@@ -97,12 +103,24 @@
             <span class="close" data-modal="revenueModal">&times;</span>
             <h2>Add Revenue</h2>
             <form id="revenueForm">
-                <label for="revenueDescription">Description</label>
-                <input type="text" id="revenueDescription" required>
+                <label for="revenueType">Type</label>
+                <input type="text" id="revenueType" required>
+                <label for="revenueDate">Date</label>
+                <input type="date" id="revenueDate" required>
                 <label for="revenueReceipt">Receipt #</label>
                 <input type="text" id="revenueReceipt" required>
-                <label for="revenueAmount">Amount</label>
-                <input type="number" id="revenueAmount" required>
+                <label for="revenuePayment">Payment</label>
+                <input type="text" id="revenuePayment" required>
+                <label for="revenueName">Name</label>
+                <input type="text" id="revenueName" required>
+                <label for="revenueContact">Contact</label>
+                <input type="email" id="revenueContact" required>
+                <label for="revenueSubtotal">Subtotal</label>
+                <input type="number" id="revenueSubtotalInput" required>
+                <label for="revenueFee">Fee</label>
+                <input type="number" id="revenueFee" required>
+                <label for="revenueNotes">Notes</label>
+                <textarea id="revenueNotes" rows="3"></textarea>
                 <button type="submit">Add Revenue</button>
             </form>
         </div>
@@ -113,13 +131,7 @@
             <span class="close" data-modal="expenseModal">&times;</span>
             <h2>Add Expense</h2>
             <form id="expenseForm">
-                <label for="expenseDescription">Description</label>
-                <input type="text" id="expenseDescription" required>
-                <label for="expenseReceipt">Receipt #</label>
-                <input type="text" id="expenseReceipt" required>
-                <label for="expenseAmount">Amount</label>
-                <input type="number" id="expenseAmount" required>
-                <button type="submit">Add Expense</button>
+                <!-- Similar fields as the revenue form -->
             </form>
         </div>
     </div>

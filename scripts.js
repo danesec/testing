@@ -157,6 +157,7 @@ function exportToCSV(tableId) {
 
 // Initial update
 updateFinancialStats();
+
 // Get the modal
 var modal = document.getElementById("myModal");
 
@@ -188,3 +189,4 @@ window.onclick = function(event) {
     modal.querySelector(".modal-content").style.transform = "translateY(-10px)";
   }
 }
+

@@ -1,12 +1,33 @@
-.table-container {
+/* Basic styles for layout */
+body {
+    font-family: Arial, sans-serif;
     margin: 20px;
 }
 
-.popup-form {
+h2 {
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.popup {
     display: none;
     position: fixed;
-    top: 0;
     left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
@@ -14,45 +35,50 @@
     align-items: center;
 }
 
-.form-container {
-    background-color: white;
+.popup-content {
+    background-color: #fff;
     padding: 20px;
-    border-radius: 5px;
-}
-
-.strikethrough {
-    text-decoration: line-through;
-}
-
-.stats-box {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    margin: 20px;
-}
-
-.table-container input, .table-container select {
-    margin-right: 10px;
+    border-radius: 10px;
+    width: 300px;
 }
 
 button {
-    background-color: #28a745;
+    background-color: #4CAF50;
     color: white;
-    padding: 10px 20px;
     border: none;
+    padding: 10px;
     cursor: pointer;
-    margin: 5px;
-    border-radius: 5px;
+    font-size: 14px;
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #45a049;
 }
 
-.cancel-button {
-    background-color: #dc3545;
+input {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
-.cancel-button:hover {
-    background-color: #c82333;
+.controls {
+    margin-bottom: 20px;
+}
+
+.stats-box {
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+}
+
+.stats-box div {
+    margin-bottom: 5px;
+}
+
+/* Strikethrough for voided rows */
+.strikethrough {
+    text-decoration: line-through;
 }

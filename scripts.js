@@ -1,40 +1,59 @@
-// Variables for table data
-const revenueTable = document.getElementById('revenueTable');
-const expensesTable = document.getElementById('expensesTable');
-const totalDonationsElement = document.getElementById('totalDonations');
-const totalRegistrationsElement = document.getElementById('totalRegistrations');
-const creditCardFeesElement = document.getElementById('creditCardFees');
-const netAmountElement = document.getElementById('netAmount');
-
 let revenueData = [];
 let expenseData = [];
 
-// Update Financial Stats
+const revenueTable = document.getElementById('revenueTable');
+const expensesTable = document.getElementById('expensesTable');
+
+// Filter table based on dropdown or search input
+function filterTable() {
+    const searchQuery = document.getElementById('searchRevenue').value.toLowerCase();
+    const sortBy = document.getElementById('sortByRevenue').value;
+
+    // Filter revenue table
+    const revenueRows = revenueTable.querySelectorAll('tbody tr');
+    revenueRows.forEach(row => {
+        const type = row.querySelector('.revenueType').textContent.toLowerCase();
+        const voided = row.classList.contains('strikethrough');
+        const matchSearch = type.includes(searchQuery);
+        const matchSort = sortBy ? type === sortBy.toLowerCase() : true;
+
+        row.style.display = (matchSearch && matchSort) ? '' : 'none';
+    });
+
+    // Update financial stats
+    updateFinancialStats();
+}
+
+// Update stats based on data
 function updateFinancialStats() {
-    let totalDonations = 0;
-    let totalRegistrations = 0;
-    let totalFees = 0;
-    let netAmount = 0;
+    let totalDonations = 0, totalRegistrations = 0, totalFees = 0, totalMinusExpenses = 0;
 
     revenueData.forEach(row => {
-        totalDonations += parseFloat(row.querySelector('.revenueSubtotal').innerText);
-        totalFees += parseFloat(row.querySelector('.revenueFee').innerText);
+        const subtotal = parseFloat(row.querySelector('.revenueSubtotal').textContent);
+        const fee = parseFloat(row.querySelector('.revenueFee').textContent);
+        if (row.classList.contains('strikethrough')) return;
+
+        totalDonations += subtotal;
+        totalFees += fee;
     });
 
     expenseData.forEach(row => {
-        totalRegistrations += parseFloat(row.querySelector('.expenseSubtotal').innerText);
-        totalFees += parseFloat(row.querySelector('.expenseFee').innerText);
+        const subtotal = parseFloat(row.querySelector('.expenseSubtotal').textContent);
+        const fee = parseFloat(row.querySelector('.expenseFee').textContent);
+        if (row.classList.contains('strikethrough')) return;
+
+        totalRegistrations += subtotal;
+        totalFees += fee;
+        totalMinusExpenses += subtotal - fee;
     });
 
-    netAmount = totalDonations - totalRegistrations;
-
-    totalDonationsElement.innerText = `$${totalDonations.toFixed(2)}`;
-    totalRegistrationsElement.innerText = `$${totalRegistrations.toFixed(2)}`;
-    creditCardFeesElement.innerText = `$${totalFees.toFixed(2)}`;
-    netAmountElement.innerText = `$${netAmount.toFixed(2)}`;
+    document.getElementById('totalDonations').textContent = totalDonations;
+    document.getElementById('totalRegistrations').textContent = totalRegistrations;
+    document.getElementById('totalFees').textContent = totalFees;
+    document.getElementById('totalMinusExpenses').textContent = totalMinusExpenses;
 }
 
-// Function to add revenue to the table
+// Add revenue to table
 function addRevenueToTable() {
     const newRow = document.createElement('tr');
     newRow.innerHTML = `
@@ -59,7 +78,7 @@ function addRevenueToTable() {
     closePopup('revenuePopup');
 }
 
-// Function to add expense to the table
+// Add expense to table
 function addExpenseToTable() {
     const newRow = document.createElement('tr');
     newRow.innerHTML = `

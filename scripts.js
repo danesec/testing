@@ -1,4 +1,8 @@
-// Event listeners for opening modals
+document.addEventListener('DOMContentLoaded', () => {
+    updateSummary();
+});
+
+// Open modals
 document.getElementById('addRevenueBtn').addEventListener('click', () => {
     document.getElementById('revenueModal').style.display = 'flex';
 });
@@ -15,32 +19,28 @@ document.querySelectorAll('.close').forEach(closeBtn => {
     });
 });
 
-// Handle adding revenue
+// Handle revenue form submission
 document.getElementById('revenueForm').addEventListener('submit', (event) => {
     event.preventDefault();
-    const description = document.getElementById('revenueDescription').value;
-    const amount = document.getElementById('revenueAmount').value;
-    addEntry('Revenue', description, amount);
+    addEntry('Revenue', document.getElementById('revenueDescription').value, parseFloat(document.getElementById('revenueAmount').value));
     document.getElementById('revenueModal').style.display = 'none';
 });
 
-// Handle adding expense
+// Handle expense form submission
 document.getElementById('expenseForm').addEventListener('submit', (event) => {
     event.preventDefault();
-    const description = document.getElementById('expenseDescription').value;
-    const amount = document.getElementById('expenseAmount').value;
-    addEntry('Expense', description, amount);
+    addEntry('Expense', document.getElementById('expenseDescription').value, parseFloat(document.getElementById('expenseAmount').value));
     document.getElementById('expenseModal').style.display = 'none';
 });
 
-// Function to add a new entry
+// Add a new entry
 function addEntry(type, description, amount) {
     const tableBody = document.getElementById('entriesTableBody');
     const row = document.createElement('tr');
     row.innerHTML = `
         <td>${type}</td>
         <td>${description}</td>
-        <td>$${amount}</td>
+        <td class="amount">$${amount.toFixed(2)}</td>
         <td>
             <button class="editBtn">Edit</button>
             <button class="deleteBtn">Delete</button>
@@ -48,15 +48,26 @@ function addEntry(type, description, amount) {
         </td>
     `;
     tableBody.appendChild(row);
+    updateSummary();
 }
 
-// Event delegation for edit, delete, and void actions
-document.getElementById('entriesTableBody').addEventListener('click', (event) => {
-    if (event.target.classList.contains('deleteBtn')) {
-        event.target.closest('tr').remove();
-    } else if (event.target.classList.contains('editBtn')) {
-        alert('Edit functionality not implemented yet!');
-    } else if (event.target.classList.contains('voidBtn')) {
-        alert('Void functionality not implemented yet!');
-    }
-});
+// Update financial summary
+function updateSummary() {
+    const rows = document.querySelectorAll('#entriesTableBody tr');
+    let revenueTotal = 0;
+    let expensesTotal = 0;
+
+    rows.forEach(row => {
+        const type = row.cells[0].textContent;
+        const amount = parseFloat(row.cells[2].textContent.replace('$', ''));
+        if (type === 'Revenue') {
+            revenueTotal += amount;
+        } else if (type === 'Expense') {
+            expensesTotal += amount;
+        }
+    });
+
+    document.getElementById('revenueSubtotal').textContent = revenueTotal.toFixed(2);
+    document.getElementById('expensesSubtotal').textContent = expensesTotal.toFixed(2);
+    document.getElementById('totalBalance').textContent = (revenueTotal - expensesTotal).toFixed(2);
+}

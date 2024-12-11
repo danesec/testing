@@ -4,116 +4,121 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Financial Transactions</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="header">
-        <img src="graph-placeholder.png" alt="Graph" class="graph">
-        <div class="stats-box" id="statsBox">
-            <div>Total Donations: <span id="totalDonations">0</span></div>
-            <div>Total Registrations: <span id="totalRegistrations">0</span></div>
-            <div>Total Credit Card Fees: <span id="totalFees">0</span></div>
-            <div>Total Minus Expenses: <span id="totalMinusExpenses">0</span></div>
+    <div class="container">
+        <!-- Stats Box -->
+        <div id="stats-box">
+            <h3>Financial Stats</h3>
+            <div id="stats">
+                <p>Total Donations: $<span id="donations">0</span></p>
+                <p>Total Registrations: <span id="registrations">0</span></p>
+                <p>Total Credit Card Fees: $<span id="fees">0</span></p>
+                <p>Net: $<span id="net">0</span></p>
+            </div>
         </div>
-    </div>
 
-    <div class="controls">
-        <input type="text" id="searchRevenue" placeholder="Search Revenue" oninput="filterTable()">
-        <select id="sortByRevenue" onchange="filterTable()">
-            <option value="">All</option>
-            <option value="Voided">Voided</option>
-            <option value="Store Purchase">Store Purchase</option>
-            <option value="Sponsor">Sponsor</option>
-            <option value="Donation">Donation</option>
-            <option value="Registration">Registration</option>
-            <option value="Manual Addition">Manual Addition</option>
-        </select>
-        <button onclick="showAddRevenuePopup()">Add Revenue</button>
-        <button onclick="exportToCSV('revenueTable')">Export Transactions to CSV</button>
-    </div>
-
-    <h2>Revenue</h2>
-    <table id="revenueTable">
-        <thead>
-            <tr>
-                <th>Type</th>
-                <th>Date</th>
-                <th>Receipt #</th>
-                <th>Payment</th>
-                <th>Name</th>
-                <th>Contact</th>
-                <th>Subtotal</th>
-                <th>Fee</th>
-                <th>Notes</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Data rows will be inserted here -->
-        </tbody>
-    </table>
-
-    <h2>Expenses</h2>
-    <div class="controls">
-        <button onclick="showAddExpensePopup()">Add Expense</button>
-        <button onclick="exportToCSV('expensesTable')">Export All Finances to CSV</button>
-    </div>
-    <table id="expensesTable">
-        <thead>
-            <tr>
-                <th>Type</th>
-                <th>Date</th>
-                <th>Receipt #</th>
-                <th>Payment</th>
-                <th>Name</th>
-                <th>Contact</th>
-                <th>Subtotal</th>
-                <th>Fee</th>
-                <th>Notes</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Data rows will be inserted here -->
-        </tbody>
-    </table>
-
-    <!-- Revenue Popup -->
-    <div id="revenuePopup" class="popup">
-        <div class="popup-content">
-            <h3>Add Revenue</h3>
-            <input id="revenueType" type="text" placeholder="Type">
-            <input id="revenueDate" type="date">
-            <input id="revenueReceipt" type="text" placeholder="Receipt #">
-            <input id="revenuePayment" type="text" placeholder="Payment">
-            <input id="revenueName" type="text" placeholder="Name">
-            <input id="revenueContact" type="text" placeholder="Contact">
-            <input id="revenueSubtotal" type="number" placeholder="Subtotal">
-            <input id="revenueFee" type="number" placeholder="Fee">
-            <input id="revenueNotes" type="text" placeholder="Notes">
-            <button onclick="addRevenueToTable()">Add Revenue</button>
-            <button onclick="closePopup('revenuePopup')">Close</button>
+        <!-- Graph and Filters -->
+        <div class="top-section">
+            <div id="chart-container">
+                <img src="your-chart-placeholder.png" alt="Graph" id="chart-image">
+            </div>
+            <div id="filter-section">
+                <div class="filter">
+                    <label for="filter-select">All</label>
+                    <select id="filter-select">
+                        <option value="All">All</option>
+                        <option value="Voided">Voided</option>
+                        <option value="Store Purchase">Store Purchase</option>
+                        <option value="Sponsor">Sponsor</option>
+                        <option value="Donation">Donation</option>
+                        <option value="Registration">Registration</option>
+                        <option value="Manual Addition">Manual Addition</option>
+                    </select>
+                </div>
+                <div class="filter">
+                    <label for="search">Search</label>
+                    <input type="text" id="search" placeholder="Search transactions...">
+                </div>
+            </div>
         </div>
+
+        <!-- Revenue Table -->
+        <h2>Revenue</h2>
+        <button id="add-revenue">Add Revenue</button>
+        <button id="export-revenue">Export Transactions to CSV</button>
+        <table id="revenue-table">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Date</th>
+                    <th>Receipt #</th>
+                    <th>Payment</th>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Subtotal</th>
+                    <th>Fee</th>
+                    <th>Notes</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="revenue-body">
+                <!-- Example Revenue Row -->
+                <tr data-type="Donation">
+                    <td>Donation</td>
+                    <td>12/11/2024</td>
+                    <td>12345</td>
+                    <td>$100</td>
+                    <td>John Doe</td>
+                    <td>555-1234</td>
+                    <td>$100</td>
+                    <td>$5</td>
+                    <td>Charity Event</td>
+                    <td><button class="void">Void</button> <button class="edit">Edit</button> <button class="delete">Delete</button></td>
+                </tr>
+                <!-- More rows will be dynamically added -->
+            </tbody>
+        </table>
+
+        <!-- Expenses Table -->
+        <h2>Expenses</h2>
+        <button id="add-expense">Add Expense</button>
+        <button id="export-expenses">Export All Finances to CSV</button>
+        <table id="expenses-table">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Date</th>
+                    <th>Receipt #</th>
+                    <th>Payment</th>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Subtotal</th>
+                    <th>Fee</th>
+                    <th>Notes</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="expenses-body">
+                <!-- Example Expense Row -->
+                <tr data-type="Manual Addition">
+                    <td>Manual Addition</td>
+                    <td>12/10/2024</td>
+                    <td>98765</td>
+                    <td>$50</td>
+                    <td>Jane Doe</td>
+                    <td>555-5678</td>
+                    <td>$50</td>
+                    <td>$3</td>
+                    <td>Event Catering</td>
+                    <td><button class="void">Void</button> <button class="edit">Edit</button> <button class="delete">Delete</button></td>
+                </tr>
+                <!-- More rows will be dynamically added -->
+            </tbody>
+        </table>
     </div>
 
-    <!-- Expense Popup -->
-    <div id="expensePopup" class="popup">
-        <div class="popup-content">
-            <h3>Add Expense</h3>
-            <input id="expenseType" type="text" placeholder="Type">
-            <input id="expenseDate" type="date">
-            <input id="expenseReceipt" type="text" placeholder="Receipt #">
-            <input id="expensePayment" type="text" placeholder="Payment">
-            <input id="expenseName" type="text" placeholder="Name">
-            <input id="expenseContact" type="text" placeholder="Contact">
-            <input id="expenseSubtotal" type="number" placeholder="Subtotal">
-            <input id="expenseFee" type="number" placeholder="Fee">
-            <input id="expenseNotes" type="text" placeholder="Notes">
-            <button onclick="addExpenseToTable()">Add Expense</button>
-            <button onclick="closePopup('expensePopup')">Close</button>
-        </div>
-    </div>
-
-    <script src="scripts.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

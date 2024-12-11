@@ -1,178 +1,130 @@
-let revenueData = [];
-let expenseData = [];
+document.addEventListener("DOMContentLoaded", () => {
+    const revenueBody = document.getElementById("revenue-body");
+    const expensesBody = document.getElementById("expenses-body");
+    const filterSelect = document.getElementById("filter-select");
+    const searchInput = document.getElementById("search");
+    const stats = {
+        donations: 0,
+        registrations: 0,
+        fees: 0,
+        net: 0,
+    };
 
-const revenueTable = document.getElementById('revenueTable');
-const expensesTable = document.getElementById('expensesTable');
-
-// Filter table based on dropdown or search input
-function filterTable() {
-    const searchQuery = document.getElementById('searchRevenue').value.toLowerCase();
-    const sortBy = document.getElementById('sortByRevenue').value;
-
-    // Filter revenue table
-    const revenueRows = revenueTable.querySelectorAll('tbody tr');
-    revenueRows.forEach(row => {
-        const type = row.querySelector('.revenueType').textContent.toLowerCase();
-        const voided = row.classList.contains('strikethrough');
-        const matchSearch = type.includes(searchQuery);
-        const matchSort = sortBy ? type === sortBy.toLowerCase() : true;
-
-        row.style.display = (matchSearch && matchSort) ? '' : 'none';
+    // Handle Add Revenue Button
+    document.getElementById("add-revenue").addEventListener("click", () => {
+        const newRow = createTransactionRow("Donation", "12/12/2024", "54321", "$200", "John Smith", "555-9876", "$200", "$10", "Charity Event");
+        revenueBody.appendChild(newRow);
+        updateFinancialStats();
     });
 
-    // Update financial stats
-    updateFinancialStats();
-}
-
-// Update stats based on data
-function updateFinancialStats() {
-    let totalDonations = 0, totalRegistrations = 0, totalFees = 0, totalMinusExpenses = 0;
-
-    revenueData.forEach(row => {
-        const subtotal = parseFloat(row.querySelector('.revenueSubtotal').textContent);
-        const fee = parseFloat(row.querySelector('.revenueFee').textContent);
-        if (row.classList.contains('strikethrough')) return;
-
-        totalDonations += subtotal;
-        totalFees += fee;
+    // Handle Add Expense Button
+    document.getElementById("add-expense").addEventListener("click", () => {
+        const newRow = createTransactionRow("Manual Addition", "12/12/2024", "67890", "$150", "Jane Smith", "555-1122", "$150", "$8", "Office Supplies");
+        expensesBody.appendChild(newRow);
+        updateFinancialStats();
     });
 
-    expenseData.forEach(row => {
-        const subtotal = parseFloat(row.querySelector('.expenseSubtotal').textContent);
-        const fee = parseFloat(row.querySelector('.expenseFee').textContent);
-        if (row.classList.contains('strikethrough')) return;
-
-        totalRegistrations += subtotal;
-        totalFees += fee;
-        totalMinusExpenses += subtotal - fee;
+    // Filter Table by Dropdown
+    filterSelect.addEventListener("change", (e) => {
+        filterTable(e.target.value);
     });
 
-    document.getElementById('totalDonations').textContent = totalDonations;
-    document.getElementById('totalRegistrations').textContent = totalRegistrations;
-    document.getElementById('totalFees').textContent = totalFees;
-    document.getElementById('totalMinusExpenses').textContent = totalMinusExpenses;
-}
+    // Filter Table by Search Input
+    searchInput.addEventListener("input", () => {
+        filterTable(filterSelect.value);
+    });
 
-// Add revenue to table
-function addRevenueToTable() {
-    const newRow = document.createElement('tr');
-    newRow.innerHTML = `
-        <td class="revenueType">${document.getElementById('revenueType').value}</td>
-        <td class="revenueDate">${document.getElementById('revenueDate').value}</td>
-        <td class="revenueReceipt">${document.getElementById('revenueReceipt').value}</td>
-        <td class="revenuePayment">${document.getElementById('revenuePayment').value}</td>
-        <td class="revenueName">${document.getElementById('revenueName').value}</td>
-        <td class="revenueContact">${document.getElementById('revenueContact').value}</td>
-        <td class="revenueSubtotal">${document.getElementById('revenueSubtotal').value}</td>
-        <td class="revenueFee">${document.getElementById('revenueFee').value}</td>
-        <td class="revenueNotes">${document.getElementById('revenueNotes').value}</td>
-        <td>
-            <button onclick="voidTransaction(this)">Void</button>
-            <button onclick="editRevenue(this)">Edit</button>
-            <button onclick="deleteRevenue(this)">Delete</button>
-        </td>
-    `;
-    revenueTable.querySelector('tbody').appendChild(newRow);
-    revenueData.push(newRow); // Add to revenue data array
-    updateFinancialStats(); // Update stats
-    closePopup('revenuePopup');
-}
-
-// Add expense to table
-function addExpenseToTable() {
-    const newRow = document.createElement('tr');
-    newRow.innerHTML = `
-        <td class="expenseType">${document.getElementById('expenseType').value}</td>
-        <td class="expenseDate">${document.getElementById('expenseDate').value}</td>
-        <td class="expenseReceipt">${document.getElementById('expenseReceipt').value}</td>
-        <td class="expensePayment">${document.getElementById('expensePayment').value}</td>
-        <td class="expenseName">${document.getElementById('expenseName').value}</td>
-        <td class="expenseContact">${document.getElementById('expenseContact').value}</td>
-        <td class="expenseSubtotal">${document.getElementById('expenseSubtotal').value}</td>
-        <td class="expenseFee">${document.getElementById('expenseFee').value}</td>
-        <td class="expenseNotes">${document.getElementById('expenseNotes').value}</td>
-        <td>
-            <button onclick="voidTransaction(this)">Void</button>
-            <button onclick="editExpense(this)">Edit</button>
-            <button onclick="deleteExpense(this)">Delete</button>
-        </td>
-    `;
-    expensesTable.querySelector('tbody').appendChild(newRow);
-    expenseData.push(newRow); // Add to expense data array
-    updateFinancialStats(); // Update stats
-    closePopup('expensePopup');
-}
-
-// Void transaction function
-function voidTransaction(button) {
-    const row = button.closest('tr');
-    row.classList.toggle('strikethrough');
-    const voidButton = row.querySelector('button');
-    if (row.classList.contains('strikethrough')) {
-        voidButton.innerText = 'Unvoid';
-    } else {
-        voidButton.innerText = 'Void';
+    // Function to Create a Transaction Row
+    function createTransactionRow(type, date, receipt, payment, name, contact, subtotal, fee, notes) {
+        const row = document.createElement("tr");
+        row.setAttribute("data-type", type);
+        row.innerHTML = `
+            <td>${type}</td>
+            <td>${date}</td>
+            <td>${receipt}</td>
+            <td>${payment}</td>
+            <td>${name}</td>
+            <td>${contact}</td>
+            <td>${subtotal}</td>
+            <td>${fee}</td>
+            <td>${notes}</td>
+            <td>
+                <button class="void">Void</button>
+                <button class="edit">Edit</button>
+                <button class="delete">Delete</button>
+            </td>
+        `;
+        addEventListeners(row);
+        return row;
     }
-    updateFinancialStats(); // Update stats after voiding
-}
 
-// Edit transaction functions
-function editRevenue(button) {
-    // Implement edit functionality here
-}
-
-function editExpense(button) {
-    // Implement edit functionality here
-}
-
-// Delete transaction functions
-function deleteRevenue(button) {
-    const row = button.closest('tr');
-    row.remove();
-    updateFinancialStats(); // Update stats after deletion
-}
-
-function deleteExpense(button) {
-    const row = button.closest('tr');
-    row.remove();
-    updateFinancialStats(); // Update stats after deletion
-}
-
-// Show popups
-function showAddRevenuePopup() {
-    document.getElementById('revenuePopup').style.display = 'flex';
-}
-
-function showAddExpensePopup() {
-    document.getElementById('expensePopup').style.display = 'flex';
-}
-
-// Close popups
-function closePopup(popupId) {
-    document.getElementById(popupId).style.display = 'none';
-}
-
-// Export to CSV function
-function exportToCSV(tableId) {
-    const table = document.getElementById(tableId);
-    let csv = [];
-    const rows = table.querySelectorAll('tr');
-    rows.forEach(row => {
-        const rowData = [];
-        const cols = row.querySelectorAll('td, th');
-        cols.forEach(col => {
-            rowData.push(col.innerText);
+    // Add event listeners for buttons
+    function addEventListeners(row) {
+        row.querySelector(".void").addEventListener("click", () => {
+            row.classList.add("voided");
+            row.querySelector(".void").textContent = "Unvoid";
+            row.querySelector(".edit").remove();
+            row.querySelector(".delete").remove();
         });
-        csv.push(rowData.join(','));
-    });
 
-    const csvString = csv.join('\n');
-    const blob = new Blob([csvString], { type: 'text/csv' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = `${tableId}.csv`;
-    link.click();
-}
+        row.querySelector(".edit").addEventListener("click", () => {
+            // Edit functionality here
+        });
 
-// Initial update
-updateFinancialStats();
+        row.querySelector(".delete").addEventListener("click", () => {
+            row.remove();
+            updateFinancialStats();
+        });
+    }
+
+    // Filter Table Rows
+    function filterTable(filter) {
+        const rows = [...revenueBody.children, ...expensesBody.children];
+        rows.forEach(row => {
+            const type = row.getAttribute("data-type");
+            const matchesType = filter === "All" || type === filter;
+            const matchesSearch = row.textContent.toLowerCase().includes(searchInput.value.toLowerCase());
+            if (matchesType && matchesSearch) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        });
+        updateFinancialStats();
+    }
+
+    // Update Financial Stats
+    function updateFinancialStats() {
+        let donations = 0;
+        let registrations = 0;
+        let fees = 0;
+        let net = 0;
+
+        [...revenueBody.children, ...expensesBody.children].forEach(row => {
+            if (row.style.display !== "none") {
+                const type = row.querySelector("td").textContent;
+                const subtotal = parseFloat(row.querySelector("td:nth-child(7)").textContent.replace("$", ""));
+                const fee = parseFloat(row.querySelector("td:nth-child(8)").textContent.replace("$", ""));
+
+                if (type === "Donation") donations += subtotal - fee;
+                if (type === "Registration") registrations += subtotal;
+                if (type === "Manual Addition") fees += fee;
+            }
+        });
+
+        net = donations + registrations - fees;
+
+        stats.donations = donations;
+        stats.registrations = registrations;
+        stats.fees = fees;
+        stats.net = net;
+
+        document.getElementById("donations").textContent = stats.donations.toFixed(2);
+        document.getElementById("registrations").textContent = stats.registrations.toFixed(2);
+        document.getElementById("fees").textContent = stats.fees.toFixed(2);
+        document.getElementById("net").textContent = stats.net.toFixed(2);
+    }
+
+    // Initialize the page
+    updateFinancialStats();
+});

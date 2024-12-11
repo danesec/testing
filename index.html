@@ -10,6 +10,37 @@
 <body>
   <h1>Finance Tracking</h1>
 
+  <!-- Table to display revenue and expenses -->
+  <h2>Revenue</h2>
+  <table id="revenueTable">
+    <thead>
+      <tr>
+        <th>Source</th>
+        <th>Amount</th>
+        <th>Date</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Example entries will be added here by JavaScript -->
+    </tbody>
+  </table>
+
+  <h2>Expenses</h2>
+  <table id="expenseTable">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Amount</th>
+        <th>Date</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Example entries will be added here by JavaScript -->
+    </tbody>
+  </table>
+
   <!-- Buttons to open the modals -->
   <button id="addRevenueBtn">Add Revenue</button>
   <button id="addExpenseBtn">Add Expense</button>
@@ -34,42 +65,6 @@
 
         <button type="submit">Submit Revenue</button>
       </form>
-
-      <hr>
-
-      <form id="addRevenueForm">
-        <label for="revenueSource">Source of Revenue</label>
-        <input type="text" id="revenueSource" name="revenueSource" value="Sponsorship" required>
-
-        <label for="revenueAmount">Amount</label>
-        <input type="number" id="revenueAmount" name="revenueAmount" value="2000" required>
-
-        <label for="revenueDate">Date</label>
-        <input type="text" id="revenueDate" name="revenueDate" value="2024-12-01" required>
-
-        <label for="revenueNotes">Notes</label>
-        <textarea id="revenueNotes" name="revenueNotes">Corporate sponsorship for the event.</textarea>
-
-        <button type="submit">Submit Revenue</button>
-      </form>
-
-      <hr>
-
-      <form id="addRevenueForm">
-        <label for="revenueSource">Source of Revenue</label>
-        <input type="text" id="revenueSource" name="revenueSource" value="Ticket Sales" required>
-
-        <label for="revenueAmount">Amount</label>
-        <input type="number" id="revenueAmount" name="revenueAmount" value="1500" required>
-
-        <label for="revenueDate">Date</label>
-        <input type="text" id="revenueDate" name="revenueDate" value="2024-12-01" required>
-
-        <label for="revenueNotes">Notes</label>
-        <textarea id="revenueNotes" name="revenueNotes">Sales from the online ticket platform.</textarea>
-
-        <button type="submit">Submit Revenue</button>
-      </form>
     </div>
   </div>
 
@@ -90,42 +85,6 @@
 
         <label for="expenseNotes">Notes</label>
         <textarea id="expenseNotes" name="expenseNotes">Catering for the event.</textarea>
-
-        <button type="submit">Submit Expense</button>
-      </form>
-
-      <hr>
-
-      <form id="addExpenseForm">
-        <label for="expenseCategory">Expense Category</label>
-        <input type="text" id="expenseCategory" name="expenseCategory" value="Marketing" required>
-
-        <label for="expenseAmount">Amount</label>
-        <input type="number" id="expenseAmount" name="expenseAmount" value="500" required>
-
-        <label for="expenseDate">Date</label>
-        <input type="text" id="expenseDate" name="expenseDate" value="2024-12-01" required>
-
-        <label for="expenseNotes">Notes</label>
-        <textarea id="expenseNotes" name="expenseNotes">Advertising costs for the event.</textarea>
-
-        <button type="submit">Submit Expense</button>
-      </form>
-
-      <hr>
-
-      <form id="addExpenseForm">
-        <label for="expenseCategory">Expense Category</label>
-        <input type="text" id="expenseCategory" name="expenseCategory" value="Venue Rental" required>
-
-        <label for="expenseAmount">Amount</label>
-        <input type="number" id="expenseAmount" name="expenseAmount" value="1000" required>
-
-        <label for="expenseDate">Date</label>
-        <input type="text" id="expenseDate" name="expenseDate" value="2024-12-01" required>
-
-        <label for="expenseNotes">Notes</label>
-        <textarea id="expenseNotes" name="expenseNotes">Venue rental for the fundraiser.</textarea>
 
         <button type="submit">Submit Expense</button>
       </form>

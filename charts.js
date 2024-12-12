@@ -1,8 +1,4 @@
-// charts.js
-
-document.addEventListener('DOMContentLoaded', () => {
-    drawCharts();
-});
+document.addEventListener('DOMContentLoaded', drawCharts);
 
 function drawCharts() {
     // Implement chart drawing logic using a library like Chart.js

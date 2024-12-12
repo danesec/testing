@@ -14,6 +14,7 @@ function setupEventListeners() {
             if (modal) {
                 modal.classList.add('modal-background');
                 modal.style.display = 'flex';
+                modal.querySelector('.modal-content').classList.add('modal-content');
             }
         });
     }
@@ -25,6 +26,7 @@ function setupEventListeners() {
             if (modal) {
                 modal.classList.add('modal-background');
                 modal.style.display = 'flex';
+                modal.querySelector('.modal-content').classList.add('modal-content');
             }
         });
     }

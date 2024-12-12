@@ -12,7 +12,7 @@ function addEntry(type) {
         name: document.getElementById(`${formPrefix}Name`).value,
         contact: document.getElementById(`${formPrefix}Contact`).value,
         subtotal: parseFloat(document.getElementById(`${formPrefix}SubtotalInput`).value).toFixed(2),
-        fee: parseFloat(document.getElementById(`${formPrefix}Fee}`).value).toFixed(2),
+        fee: parseFloat(document.getElementById(`${formPrefix}Fee`).value).toFixed(2),
         notes: document.getElementById(`${formPrefix}Notes`).value
     };
 
@@ -51,7 +51,7 @@ function updateEntry(type) {
         name: document.getElementById(`${formPrefix}Name`).value,
         contact: document.getElementById(`${formPrefix}Contact`).value,
         subtotal: parseFloat(document.getElementById(`${formPrefix}SubtotalInput`).value).toFixed(2),
-        fee: parseFloat(document.getElementById(`${formPrefix}Fee}`).value).toFixed(2),
+        fee: parseFloat(document.getElementById(`${formPrefix}Fee`).value).toFixed(2),
         notes: document.getElementById(`${formPrefix}Notes`).value
     };
 

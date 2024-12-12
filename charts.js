@@ -42,12 +42,4 @@ function drawCharts() {
             }
         });
     }
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
 }

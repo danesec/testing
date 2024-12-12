@@ -7,14 +7,14 @@ function setupEventListeners() {
     const closeBtns = document.querySelectorAll('.close');
     // Check if elements exist before adding event listeners
     if (addRevenueBtn) {
-        addRevenueBtn.addEventListener('click', () => {
-            clearForm('addRevenue');
-            const modal = document.getElementById('addRevenueModal');
-            if (modal) {
-                modal.style.display = 'flex';
-                modal.classList.add('modal-background');
-            }
-        });
+addRevenueBtn.addEventListener('click', () => {
+    clearForm('addRevenue');
+    const modal = document.getElementById('addRevenueModal');
+    if (modal) {
+        modal.classList.add('modal-background');
+        modal.style.display = 'flex';
+    }
+});
     }
         if (addExpenseBtn) {
         addExpenseBtn.addEventListener('click', () => {

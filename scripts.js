@@ -7,11 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
 function setupEventListeners() {
     // Open Revenue Modal
     document.getElementById('addRevenueBtn').addEventListener('click', () => {
+        clearForm('revenue');
         document.getElementById('revenueModal').style.display = 'flex';
     });
 
     // Open Expense Modal
     document.getElementById('addExpenseBtn').addEventListener('click', () => {
+        clearForm('expense');
         document.getElementById('expenseModal').style.display = 'flex';
     });
 
@@ -26,14 +28,14 @@ function setupEventListeners() {
     // Handle Revenue Form Submission
     document.getElementById('revenueForm').addEventListener('submit', (event) => {
         event.preventDefault();
-        addEntry('Revenue');
+        updateEntry('Revenue');
         document.getElementById('revenueModal').style.display = 'none';
     });
 
     // Handle Expense Form Submission
     document.getElementById('expenseForm').addEventListener('submit', (event) => {
         event.preventDefault();
-        addEntry('Expense');
+        updateEntry('Expense');
         document.getElementById('expenseModal').style.display = 'none';
     });
 
@@ -152,15 +154,51 @@ function handleEdit(row) {
     document.getElementById(`${formPrefix}Fee`).value = parseFloat(row.cells[7].textContent.replace('$', ''));
     document.getElementById(`${formPrefix}Notes`).value = row.cells[8].textContent;
     document.getElementById(`${formPrefix}Modal`).style.display = 'flex';
-    row.remove();
-    updateSummary();
-    drawCharts(); // Redraw charts after editing an entry
+
+    document.getElementById(`${formPrefix}Form`).dataset.editingRow = row.rowIndex;
 }
 
 function handleDelete(row) {
     row.remove();
     updateSummary();
     drawCharts(); // Redraw charts after deleting an entry
+}
+
+function updateEntry(type) {
+    const formPrefix = type.toLowerCase();
+    const tableBody = document.getElementById(`${formPrefix}TableBody`);
+    const editingRow = document.getElementById(`${formPrefix}Form`).dataset.editingRow;
+
+    const entryData = {
+        type: document.getElementById(`${formPrefix}Type`).value,
+        date: document.getElementById(`${formPrefix}Date`).value,
+        receipt: document.getElementById(`${formPrefix}Receipt`).value,
+        payment: document.getElementById(`${formPrefix}Payment`).value,
+        name: document.getElementById(`${formPrefix}Name`).value,
+        contact: document.getElementById(`${formPrefix}Contact`).value,
+        subtotal: parseFloat(document.getElementById(`${formPrefix}SubtotalInput`).value).toFixed(2),
+        fee: parseFloat(document.getElementById(`${formPrefix}Fee`).value).toFixed(2),
+        notes: document.getElementById(`${formPrefix}Notes`).value
+    };
+
+    const row = tableBody.rows[editingRow - 1];
+    row.cells[0].textContent = entryData.type;
+    row.cells[1].textContent = entryData.date;
+    row.cells[2].textContent = entryData.receipt;
+    row.cells[3].textContent = entryData.payment;
+    row.cells[4].textContent = entryData.name;
+    row.cells[5].textContent = entryData.contact;
+    row.cells[6].textContent = `$${entryData.subtotal}`;
+    row.cells[7].textContent = `$${entryData.fee}`;
+    row.cells[8].textContent = entryData.notes;
+
+    updateSummary();
+    drawCharts(); // Redraw charts after updating an entry
+}
+
+function clearForm(formPrefix) {
+    document.getElementById(`${formPrefix}Form`).reset();
+    delete document.getElementById(`${formPrefix}Form`).dataset.editingRow;
 }
 
 function drawCharts() {

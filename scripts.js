@@ -1,3 +1,5 @@
+import { filterTable, filterRows } from './common.js';
+
 document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
     updateSummary();
@@ -216,5 +218,3 @@ function handleDelete(row) {
         drawCharts();
     }
 }
-
-// Remove the filterTable and filterRows functions from scripts.js

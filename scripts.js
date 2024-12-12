@@ -9,12 +9,14 @@ function setupEventListeners() {
     document.getElementById('addRevenueBtn').addEventListener('click', () => {
         clearForm('addRevenue');
         document.getElementById('addRevenueModal').style.display = 'flex';
+        document.getElementById('addRevenueModal').classList.add('modal-background'); // Ensure background is added
     });
 
     // Open Add Expense Modal
     document.getElementById('addExpenseBtn').addEventListener('click', () => {
         clearForm('addExpense');
         document.getElementById('addExpenseModal').style.display = 'flex';
+        document.getElementById('addExpenseModal').classList.add('modal-background'); // Ensure background is added
     });
 
     // Close Modals

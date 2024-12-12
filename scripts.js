@@ -191,9 +191,19 @@ function updateSummary() {
     const revenueTotal = calculateTotal('revenueTableBody');
     const expenseTotal = calculateTotal('expensesTableBody');
 
-    document.getElementById('revenueSubtotal').textContent = revenueTotal.toFixed(2);
-    document.getElementById('expensesSubtotal').textContent = expenseTotal.toFixed(2);
-    document.getElementById('totalBalance').textContent = (revenueTotal - expenseTotal).toFixed(2);
+    const revenueSubtotalElement = document.getElementById('revenueSubtotal');
+    const expensesSubtotalElement = document.getElementById('expensesSubtotal');
+    const totalBalanceElement = document.getElementById('totalBalance');
+
+    if (revenueSubtotalElement) {
+        revenueSubtotalElement.textContent = revenueTotal.toFixed(2);
+    }
+    if (expensesSubtotalElement) {
+        expensesSubtotalElement.textContent = expenseTotal.toFixed(2);
+    }
+    if (totalBalanceElement) {
+        totalBalanceElement.textContent = (revenueTotal - expenseTotal).toFixed(2);
+    }
 }
 
 function calculateTotal(tableBodyId) {

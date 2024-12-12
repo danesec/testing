@@ -1,4 +1,4 @@
-import { filterTable, filterRows } from './common.js';
+const { filterTable, filterRows } = require('./common.js');
 
 document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();

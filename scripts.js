@@ -1,4 +1,3 @@
-// Ensure elements exist before adding event listeners
 document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
     updateSummary();
@@ -10,10 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
 function setupEventListeners() {
     const addRevenueBtn = document.getElementById('addRevenueBtn');
     const addExpenseBtn = document.getElementById('addExpenseBtn');
-    
-    // ... existing code ...
 
-    // Check if elements exist
+    // Check if elements exist before adding event listeners
     if (addRevenueBtn) {
         addRevenueBtn.addEventListener('click', () => {
             clearForm('addRevenue');
@@ -164,7 +161,7 @@ function addEntry(type) {
     tableBody.appendChild(row);
     updateSummary();
     if (typeof drawCharts === 'function') {
-        drawCharts(); // Redraw charts after adding an entry
+        drawCharts();
     }
 }
 
@@ -230,6 +227,6 @@ function handleDelete(row) {
     row.remove();
     updateSummary();
     if (typeof drawCharts === 'function') {
-        drawCharts(); // Redraw charts after deleting an entry
+        drawCharts();
     }
 }

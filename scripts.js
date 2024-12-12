@@ -121,7 +121,7 @@ function setupEventListeners() {
         } else if (event.target.classList.contains('deleteBtn')) {
             handleDelete(event.target.closest('tr'));
         }
-    });
+    );
 }
 
 function addEntry(type) {

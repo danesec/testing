@@ -60,7 +60,7 @@ function addEntry(type) {
         payment: document.getElementById(`${formPrefix}Payment`).value,
         name: document.getElementById(`${formPrefix}Name`).value,
         contact: document.getElementById(`${formPrefix}Contact`).value,
-        subtotal: parseFloat(document.getElementById(`${formPrefix}Subtotal`).value).toFixed(2),
+        subtotal: parseFloat(document.getElementById(`${formPrefix}SubtotalInput`).value).toFixed(2),
         fee: parseFloat(document.getElementById(`${formPrefix}Fee`).value).toFixed(2),
         notes: document.getElementById(`${formPrefix}Notes`).value
     };
@@ -128,7 +128,7 @@ function handleEdit(row) {
     document.getElementById(`${formPrefix}Payment`).value = row.cells[3].textContent;
     document.getElementById(`${formPrefix}Name`).value = row.cells[4].textContent;
     document.getElementById(`${formPrefix}Contact`).value = row.cells[5].textContent;
-    document.getElementById(`${formPrefix}Subtotal`).value = parseFloat(row.cells[6].textContent.replace('$', ''));
+    document.getElementById(`${formPrefix}SubtotalInput`).value = parseFloat(row.cells[6].textContent.replace('$', ''));
     document.getElementById(`${formPrefix}Fee`).value = parseFloat(row.cells[7].textContent.replace('$', ''));
     document.getElementById(`${formPrefix}Notes`).value = row.cells[8].textContent;
     document.getElementById(`${formPrefix}Modal`).style.display = 'flex';

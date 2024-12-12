@@ -1,14 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
-    drawCharts();
+    if (document.getElementById('chartType') && document.getElementById('filterType')) {
+        drawCharts();
 
-    document.getElementById('chartType').addEventListener('change', drawCharts);
-    document.getElementById('filterType').addEventListener('change', drawCharts);
+        document.getElementById('chartType').addEventListener('change', drawCharts);
+        document.getElementById('filterType').addEventListener('change', drawCharts);
+    } else {
+        console.error('Required elements not found in the DOM');
+    }
 });
 
 function drawCharts() {
     const chartElement = document.getElementById('myChart');
-    const chartType = document.getElementById('chartType').value;
-    const filterType = document.getElementById('filterType').value;
+    const chartTypeElement = document.getElementById('chartType');
+    const filterTypeElement = document.getElementById('filterType');
+
+    if (!chartTypeElement || !filterTypeElement) {
+        console.error('Required elements not found in the DOM');
+        return;
+    }
+
+    const chartType = chartTypeElement.value;
+    const filterType = filterTypeElement.value;
 
     const data = getData(filterType); // Get data based on filter
 

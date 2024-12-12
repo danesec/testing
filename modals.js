@@ -5,30 +5,32 @@ function setupEventListeners() {
     const addExpenseBtn = document.getElementById('addExpenseBtn');
     const addExpenseModal = document.getElementById('addExpenseModal');
     const closeBtns = document.querySelectorAll('.close');
+
     // Check if elements exist before adding event listeners
     if (addRevenueBtn) {
-addRevenueBtn.addEventListener('click', () => {
-    clearForm('addRevenue');
-    const modal = document.getElementById('addRevenueModal');
-    if (modal) {
-        modal.classList.add('modal-background');
-        modal.style.display = 'flex';
+        addRevenueBtn.addEventListener('click', () => {
+            clearForm('addRevenue');
+            const modal = document.getElementById('addRevenueModal');
+            if (modal) {
+                modal.classList.add('modal-background');
+                modal.style.display = 'flex';
+            }
+        });
     }
-});
-    }
-        if (addExpenseBtn) {
+
+    if (addExpenseBtn) {
         addExpenseBtn.addEventListener('click', () => {
             clearForm('addExpense');
             const modal = document.getElementById('addExpenseModal');
             if (modal) {
-                modal.style.display = 'flex';
                 modal.classList.add('modal-background');
+                modal.style.display = 'flex';
             }
         });
     }
 
     // Close Modals
-    document.querySelectorAll('.close').forEach(closeBtn => {
+    closeBtns.forEach(closeBtn => {
         closeBtn.addEventListener('click', (event) => {
             const modalId = event.target.getAttribute('data-modal');
             const modalElement = document.getElementById(modalId);
@@ -37,6 +39,7 @@ addRevenueBtn.addEventListener('click', () => {
             }
         });
     });
+
     if (addRevenueBtn && addRevenueModal) {
         addRevenueBtn.addEventListener('click', () => {
             clearForm('addRevenue');
@@ -48,18 +51,6 @@ addRevenueBtn.addEventListener('click', () => {
         addExpenseBtn.addEventListener('click', () => {
             clearForm('addExpense');
             addExpenseModal.style.display = 'flex';
-        });
-    }
-
-    if (closeBtns) {
-        closeBtns.forEach(closeBtn => {
-            closeBtn.addEventListener('click', (event) => {
-                const modalId = event.target.getAttribute('data-modal');
-                const modalElement = document.getElementById(modalId);
-                if (modalElement) {
-                    modalElement.style.display = 'none';
-                }
-            });
         });
     }
 }

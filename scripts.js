@@ -41,7 +41,6 @@ function setupEventListeners() {
             }
         });
     });
-}
 
     // Handle Add Revenue Form Submission
     const addRevenueForm = document.getElementById('addRevenueForm');
@@ -115,13 +114,13 @@ function setupEventListeners() {
     }
 
     // Add event listeners for dynamic 'Edit' and 'Delete' buttons
-document.addEventListener('click', (event) => {
-    if (event.target.classList.contains('editBtn')) {
-        handleEdit(event.target.closest('tr'));
-    } else if (event.target.classList.contains('deleteBtn')) {
-        handleDelete(event.target.closest('tr'));
-    }
-});
+    document.addEventListener('click', (event) => {
+        if (event.target.classList.contains('editBtn')) {
+            handleEdit(event.target.closest('tr'));
+        } else if (event.target.classList.contains('deleteBtn')) {
+            handleDelete(event.target.closest('tr'));
+        }
+    });
 }
 
 function addEntry(type) {

@@ -1,32 +1,36 @@
+// Verify element existence in HTML
 function setupEventListeners() {
-    // Open Add Revenue Modal
-    document.getElementById('addRevenueBtn').addEventListener('click', () => {
-        clearForm('addRevenue');
-        document.getElementById('addRevenueModal').style.display = 'flex';
-    });
+    const addRevenueBtn = document.getElementById('addRevenueBtn');
+    const addRevenueModal = document.getElementById('addRevenueModal');
+    const addExpenseBtn = document.getElementById('addExpenseBtn');
+    const addExpenseModal = document.getElementById('addExpenseModal');
+    const closeBtns = document.querySelectorAll('.close');
 
-    // Open Add Expense Modal
-    document.getElementById('addExpenseBtn').addEventListener('click', () => {
-        clearForm('addExpense');
-        document.getElementById('addExpenseModal').style.display = 'flex';
-    });
-
-    // Close Modals
-    document.querySelectorAll('.close').forEach(closeBtn => {
-        closeBtn.addEventListener('click', (event) => {
-            const modalId = event.target.getAttribute('data-modal');
-            document.getElementById(modalId).style.display = 'none';
+    if (addRevenueBtn && addRevenueModal) {
+        addRevenueBtn.addEventListener('click', () => {
+            clearForm('addRevenue');
+            addRevenueModal.style.display = 'flex';
         });
-    });
+    }
 
-    // Add event listeners for dynamic 'Edit' and 'Delete' buttons
-    document.addEventListener('click', (event) => {
-        if (event.target.classList.contains('editBtn')) {
-            handleEdit(event.target.closest('tr'));
-        } else if (event.target.classList.contains('deleteBtn')) {
-            handleDelete(event.target.closest('tr'));
-        }
-    });
+    if (addExpenseBtn && addExpenseModal) {
+        addExpenseBtn.addEventListener('click', () => {
+            clearForm('addExpense');
+            addExpenseModal.style.display = 'flex';
+        });
+    }
+
+    if (closeBtns) {
+        closeBtns.forEach(closeBtn => {
+            closeBtn.addEventListener('click', (event) => {
+                const modalId = event.target.getAttribute('data-modal');
+                const modalElement = document.getElementById(modalId);
+                if (modalElement) {
+                    modalElement.style.display = 'none';
+                }
+            });
+        });
+    }
 }
 
 function handleEdit(row) {

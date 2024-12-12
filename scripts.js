@@ -166,7 +166,7 @@ function addEntry(type) {
 function filterTable() {
     const query = document.getElementById('revenueSearch').value.toLowerCase();
     const revenueRows = document.querySelectorAll('#revenueTableBody tr');
-    const expenseRows = document.querySelectorAll('#expensesTableBody tr');
+    const expenseRows = document.querySelectorAll('#expenseTableBody tr');
     const revenueTypeFilter = document.getElementById('revenueTypeFilter').value.toLowerCase();
     const expenseTypeFilter = document.getElementById('expenseTypeFilter').value.toLowerCase();
 
@@ -187,7 +187,7 @@ function filterRows(rows, query, typeFilter) {
 
 function updateSummary() {
     const revenueTotal = calculateTotal('revenueTableBody');
-    const expenseTotal = calculateTotal('expensesTableBody');
+    const expenseTotal = calculateTotal('expenseTableBody');
 
     const revenueSubtotalElement = document.getElementById('revenueSubtotal');
     const expensesSubtotalElement = document.getElementById('expensesSubtotal');

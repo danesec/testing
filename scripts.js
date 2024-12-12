@@ -163,7 +163,6 @@ function addEntry(type) {
     }
 }
 
-
 function updateSummary() {
     const revenueTotal = calculateTotal('revenueTableBody');
     const expenseTotal = calculateTotal('expenseTableBody');
@@ -217,3 +216,5 @@ function handleDelete(row) {
         drawCharts();
     }
 }
+
+// Remove the filterTable and filterRows functions from scripts.js

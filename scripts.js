@@ -10,7 +10,6 @@ function setupEventListeners() {
     const addRevenueBtn = document.getElementById('addRevenueBtn');
     const addExpenseBtn = document.getElementById('addExpenseBtn');
 
-    // Check if elements exist before adding event listeners
     if (addRevenueBtn) {
         addRevenueBtn.addEventListener('click', () => {
             clearForm('addRevenue');
@@ -33,7 +32,6 @@ function setupEventListeners() {
         });
     }
 
-    // Close Modals
     document.querySelectorAll('.close').forEach(closeBtn => {
         closeBtn.addEventListener('click', (event) => {
             const modalId = event.target.getAttribute('data-modal');
@@ -43,6 +41,7 @@ function setupEventListeners() {
             }
         });
     });
+}
 
     // Handle Add Revenue Form Submission
     const addRevenueForm = document.getElementById('addRevenueForm');

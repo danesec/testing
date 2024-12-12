@@ -1,4 +1,4 @@
-// Remove import statement and ensure proper loading of Chart.js
+// Ensure Chart.js is loaded correctly using a CDN
 document.addEventListener('DOMContentLoaded', drawCharts);
 
 function drawCharts() {

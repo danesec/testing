@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
     updateSummary();
-    drawCharts();
+    if (typeof drawCharts === 'function') {
+        drawCharts();
+    }
 });
 
 function updateSummary() {

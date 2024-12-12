@@ -1,175 +1,115 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial Tracker</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <h1>Financial Tracker</h1>
-    </header>
-    <main>
-        <section id="financialSummary">
-            <div>
-                <p><strong>Total Revenue:</strong> $<span id="revenueSubtotal">0.00</span></p>
-                <p><strong>Total Expenses:</strong> $<span id="expensesSubtotal">0.00</span></p>
-                <p><strong>Net Balance:</strong> $<span id="totalBalance">0.00</span></p>
-            </div>
-            <div id="chartsContainer">
-                <!-- Charts will be inserted here -->
-            </div>
-        </section>
-
-        <section id="revenueSection">
-            <h2>Revenue</h2>
-            <input type="text" id="revenueSearch" placeholder="Search by name, receipt, or contact" aria-label="Search Revenue">
-            <select id="revenueTypeFilter">
-                <option value="">All Types</option>
-                <option value="Donation">Donation</option>
-                <!-- Add other types as needed -->
-            </select>
-            <button id="addRevenueBtn">Add Revenue</button>
-            <table id="revenueTable">
-                <thead>
-                    <tr>
-                        <th>Type</th>
-                        <th>Date</th>
-                        <th>Receipt #</th>
-                        <th>Payment</th>
-                        <th>Name</th>
-                        <th>Contact</th>
-                        <th>Subtotal</th>
-                        <th>Fee</th>
-                        <th>Notes</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="revenueTableBody">
-                    <!-- Default Revenue Entries -->
-                    <tr>
-                        <td>Donation</td>
-                        <td>2024-12-11</td>
-                        <td>R001</td>
-                        <td>Credit Card</td>
-                        <td>John Doe</td>
-                        <td>john@example.com</td>
-                        <td>$150.00</td>
-                        <td>$5.00</td>
-                        <td>First Donation</td>
-                        <td>
-                            <button class="editBtn">Edit</button>
-                            <button class="deleteBtn">Delete</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section id="expensesSection">
-            <h2>Expenses</h2>
-            <input type="text" id="expenseSearch" placeholder="Search by name, receipt, or contact" aria-label="Search Expenses">
-            <select id="expenseTypeFilter">
-                <option value="">All Types</option>
-                <option value="Catering">Catering</option>
-                <!-- Add other types as needed -->
-            </select>
-            <button id="addExpenseBtn">Add Expense</button>
-            <table id="expensesTable">
-                <thead>
-                    <tr>
-                        <th>Type</th>
-                        <th>Date</th>
-                        <th>Receipt #</th>
-                        <th>Payment</th>
-                        <th>Name</th>
-                        <th>Contact</th>
-                        <th>Subtotal</th>
-                        <th>Fee</th>
-                        <th>Notes</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="expensesTableBody">
-                    <!-- Default Expenses Entries -->
-                    <tr>
-                        <td>Catering</td>
-                        <td>2024-12-10</td>
-                        <td>E001</td>
-                        <td>Cash</td>
-                        <td>Jane Smith</td>
-                        <td>jane@example.com</td>
-                        <td>$100.00</td>
-                        <td>$0.00</td>
-                        <td>Event Catering</td>
-                        <td>
-                            <button class="editBtn">Edit</button>
-                            <button class="deleteBtn">Delete</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-    </main>
-
-    <!-- Modals -->
-<div id="revenueModal" class="modal">
+<!-- Add Revenue Modal -->
+<div id="addRevenueModal" class="modal">
     <div class="modal-content">
-        <span class="close" data-modal="revenueModal">&times;</span>
+        <span class="close" data-modal="addRevenueModal">&times;</span>
         <h2>Add Revenue</h2>
-        <form id="revenueForm">
-            <label for="revenueType">Type</label>
-            <input type="text" id="revenueType" required>
-            <label for="revenueDate">Date</label>
-            <input type="date" id="revenueDate" required>
-            <label for="revenueReceipt">Receipt #</label>
-            <input type="text" id="revenueReceipt" required>
-            <label for="revenuePayment">Payment</label>
-            <input type="text" id="revenuePayment" required>
-            <label for="revenueName">Name</label>
-            <input type="text" id="revenueName" required>
-            <label for="revenueContact">Contact</label>
-            <input type="email" id="revenueContact" required>
-            <label for="revenueSubtotal">Subtotal</label>
-            <input type="number" id="revenueSubtotalInput" required>
-            <label for="revenueFee">Fee</label>
-            <input type="number" id="revenueFee" required>
-            <label for="revenueNotes">Notes</label>
-            <textarea id="revenueNotes" rows="3"></textarea>
-            <button type="submit">Update</button>
+        <form id="addRevenueForm">
+            <label for="addRevenueType">Type</label>
+            <input type="text" id="addRevenueType" required>
+            <label for="addRevenueDate">Date</label>
+            <input type="date" id="addRevenueDate" required>
+            <label for="addRevenueReceipt">Receipt #</label>
+            <input type="text" id="addRevenueReceipt" required>
+            <label for="addRevenuePayment">Payment</label>
+            <input type="text" id="addRevenuePayment" required>
+            <label for="addRevenueName">Name</label>
+            <input type="text" id="addRevenueName" required>
+            <label for="addRevenueContact">Contact</label>
+            <input type="email" id="addRevenueContact" required>
+            <label for="addRevenueSubtotal">Subtotal</label>
+            <input type="number" id="addRevenueSubtotalInput" required>
+            <label for="addRevenueFee">Fee</label>
+            <input type="number" id="addRevenueFee" required>
+            <label for="addRevenueNotes">Notes</label>
+            <textarea id="addRevenueNotes" rows="3"></textarea>
+            <button type="submit">Add Revenue</button>
         </form>
     </div>
 </div>
 
-<div id="expenseModal" class="modal">
+<!-- Edit Revenue Modal -->
+<div id="editRevenueModal" class="modal">
     <div class="modal-content">
-        <span class="close" data-modal="expenseModal">&times;</span>
-        <h2>Add Expense</h2>
-        <form id="expenseForm">
-            <label for="expenseType">Type</label>
-            <input type="text" id="expenseType" required>
-            <label for="expenseDate">Date</label>
-            <input type="date" id="expenseDate" required>
-            <label for="expenseReceipt">Receipt #</label>
-            <input type="text" id="expenseReceipt" required>
-            <label for="expensePayment">Payment</label>
-            <input type="text" id="expensePayment" required>
-            <label for="expenseName">Name</label>
-            <input type="text" id="expenseName" required>
-            <label for="expenseContact">Contact</label>
-            <input type="email" id="expenseContact" required>
-            <label for="expenseSubtotal">Subtotal</label>
-            <input type="number" id="expenseSubtotalInput" required>
-            <label for="expenseFee">Fee</label>
-            <input type="number" id="expenseFee" required>
-            <label for="expenseNotes">Notes</label>
-            <textarea id="expenseNotes" rows="3"></textarea>
-            <button type="submit">Update</button>
+        <span class="close" data-modal="editRevenueModal">&times;</span>
+        <h2>Edit Revenue</h2>
+        <form id="editRevenueForm">
+            <label for="editRevenueType">Type</label>
+            <input type="text" id="editRevenueType" required>
+            <label for="editRevenueDate">Date</label>
+            <input type="date" id="editRevenueDate" required>
+            <label for="editRevenueReceipt">Receipt #</label>
+            <input type="text" id="editRevenueReceipt" required>
+            <label for="editRevenuePayment">Payment</label>
+            <input type="text" id="editRevenuePayment" required>
+            <label for="editRevenueName">Name</label>
+            <input type="text" id="editRevenueName" required>
+            <label for="editRevenueContact">Contact</label>
+            <input type="email" id="editRevenueContact" required>
+            <label for="editRevenueSubtotal">Subtotal</label>
+            <input type="number" id="editRevenueSubtotalInput" required>
+            <label for="editRevenueFee">Fee</label>
+            <input type="number" id="editRevenueFee" required>
+            <label for="editRevenueNotes">Notes</label>
+            <textarea id="editRevenueNotes" rows="3"></textarea>
+            <button type="submit">Update Revenue</button>
         </form>
     </div>
 </div>
 
-    <script src="scripts.js"></script>
-</body>
-</html>
+<!-- Add Expense Modal -->
+<div id="addExpenseModal" class="modal">
+    <div class="modal-content">
+        <span class="close" data-modal="addExpenseModal">&times;</span>
+        <h2>Add Expense</h2>
+        <form id="addExpenseForm">
+            <label for="addExpenseType">Type</label>
+            <input type="text" id="addExpenseType" required>
+            <label for="addExpenseDate">Date</label>
+            <input type="date" id="addExpenseDate" required>
+            <label for="addExpenseReceipt">Receipt #</label>
+            <input type="text" id="addExpenseReceipt" required>
+            <label for="addExpensePayment">Payment</label>
+            <input type="text" id="addExpensePayment" required>
+            <label for="addExpenseName">Name</label>
+            <input type="text" id="addExpenseName" required>
+            <label for="addExpenseContact">Contact</label>
+            <input type="email" id="addExpenseContact" required>
+            <label for="addExpenseSubtotal">Subtotal</label>
+            <input type="number" id="addExpenseSubtotalInput" required>
+            <label for="addExpenseFee">Fee</label>
+            <input type="number" id="addExpenseFee" required>
+            <label for="addExpenseNotes">Notes</label>
+            <textarea id="addExpenseNotes" rows="3"></textarea>
+            <button type="submit">Add Expense</button>
+        </form>
+    </div>
+</div>
+
+<!-- Edit Expense Modal -->
+<div id="editExpenseModal" class="modal">
+    <div class="modal-content">
+        <span class="close" data-modal="editExpenseModal">&times;</span>
+        <h2>Edit Expense</h2>
+        <form id="editExpenseForm">
+            <label for="editExpenseType">Type</label>
+            <input type="text" id="editExpenseType" required>
+            <label for="editExpenseDate">Date</label>
+            <input type="date" id="editExpenseDate" required>
+            <label for="editExpenseReceipt">Receipt #</label>
+            <input type="text" id="editExpenseReceipt" required>
+            <label for="editExpensePayment">Payment</label>
+            <input type="text" id="editExpensePayment" required>
+            <label for="editExpenseName">Name</label>
+            <input type="text" id="editExpenseName" required>
+            <label for="editExpenseContact">Contact</label>
+            <input type="email" id="editExpenseContact" required>
+            <label for="editExpenseSubtotal">Subtotal</label>
+            <input type="number" id="editExpenseSubtotalInput" required>
+            <label for="editExpenseFee">Fee</label>
+            <input type="number" id="editExpenseFee" required>
+            <label for="editExpenseNotes">Notes</label>
+            <textarea id="editExpenseNotes" rows="3"></textarea>
+            <button type="submit">Update Expense</button>
+        </form>
+    </div>
+</div>

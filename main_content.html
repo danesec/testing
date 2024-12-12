@@ -96,5 +96,57 @@
                 </tr>
             </tbody>
         </table>
+        <!-- Add Revenue Modal -->
+<div id="addRevenueModal" class="modal">
+    <form id="addRevenueForm">
+        <label for="addRevenueType">Type:</label>
+        <input type="text" id="addRevenueType" required>
+        <label for="addRevenueDate">Date:</label>
+        <input type="date" id="addRevenueDate" required>
+        <label for="addRevenueReceipt">Receipt #:</label>
+        <input type="text" id="addRevenueReceipt" required>
+        <label for="addRevenuePayment">Payment:</label>
+        <input type="text" id="addRevenuePayment" required>
+        <label for="addRevenueName">Name:</label>
+        <input type="text" id="addRevenueName" required>
+        <label for="addRevenueContact">Contact:</label>
+        <input type="text" id="addRevenueContact" required>
+        <label for="addRevenueSubtotalInput">Subtotal:</label>
+        <input type="number" id="addRevenueSubtotalInput" required>
+        <label for="addRevenueFee">Fee:</label>
+        <input type="number" id="addRevenueFee" required>
+        <label for="addRevenueNotes">Notes:</label>
+        <textarea id="addRevenueNotes"></textarea>
+        <button type="submit">Add Revenue</button>
+        <button type="button" class="close" data-modal="addRevenueModal">Close</button>
+    </form>
+</div>
+
+<!-- Add Expense Modal -->
+<div id="addExpenseModal" class="modal">
+    <form id="addExpenseForm">
+        <label for="addExpenseType">Type:</label>
+        <input type="text" id="addExpenseType" required>
+        <label for="addExpenseDate">Date:</label>
+        <input type="date" id="addExpenseDate" required>
+        <label for="addExpenseReceipt">Receipt #:</label>
+        <input type="text" id="addExpenseReceipt" required>
+        <label for="addExpensePayment">Payment:</label>
+        <input type="text" id="addExpensePayment" required>
+        <label for="addExpenseName">Name:</label>
+        <input type="text" id="addExpenseName" required>
+        <label for="addExpenseContact">Contact:</label>
+        <input type="text" id="addExpenseContact" required>
+        <label for="addExpenseSubtotalInput">Subtotal:</label>
+        <input type="number" id="addExpenseSubtotalInput" required>
+        <label for="addExpenseFee">Fee:</label>
+        <input type="number" id="addExpenseFee" required>
+        <label for="addExpenseNotes">Notes:</label>
+        <textarea id="addExpenseNotes"></textarea>
+        <button type="submit">Add Expense</button>
+        <button type="button" class="close" data-modal="addExpenseModal">Close</button>
+    </form>
+</div>
     </section>
+    
 </main>

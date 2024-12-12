@@ -48,11 +48,11 @@ function updateEntry(type) {
         date: document.getElementById(`${formPrefix}Date`).value,
         receipt: document.getElementById(`${formPrefix}Receipt`).value,
         payment: document.getElementById(`${formPrefix}Payment`).value,
-        name: document.getElementById(`${formPrefix}Name}`).value,
+        name: document.getElementById(`${formPrefix}Name`).value,
         contact: document.getElementById(`${formPrefix}Contact`).value,
         subtotal: parseFloat(document.getElementById(`${formPrefix}SubtotalInput`).value).toFixed(2),
         fee: parseFloat(document.getElementById(`${formPrefix}Fee}`).value).toFixed(2),
-        notes: document.getElementById(`${formPrefix}Notes}`).value
+        notes: document.getElementById(`${formPrefix}Notes`).value
     };
 
     const row = tableBody.rows[editingRow - 1];

@@ -1,16 +1,26 @@
-document.addEventListener('DOMContentLoaded', drawCharts);
+document.addEventListener('DOMContentLoaded', () => {
+    drawCharts();
+
+    document.getElementById('chartType').addEventListener('change', drawCharts);
+    document.getElementById('filterType').addEventListener('change', drawCharts);
+});
 
 function drawCharts() {
     const chartElement = document.getElementById('myChart');
+    const chartType = document.getElementById('chartType').value;
+    const filterType = document.getElementById('filterType').value;
+
+    const data = getData(filterType); // Get data based on filter
+
     if (chartElement) {
         const ctx = chartElement.getContext('2d');
-        const myChart = new Chart(ctx, {
-            type: 'bar',
+        new Chart(ctx, {
+            type: chartType,
             data: {
                 labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
                 datasets: [{
                     label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3, 7],
+                    data: data,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -41,4 +51,10 @@ function drawCharts() {
             }
         });
     }
+}
+
+function getData(filterType) {
+    // Implement logic to filter data based on the filterType (revenue, expenses, all)
+    // Return the filtered data array
+    return [12, 19, 3, 5, 2, 3, 7]; // Example data
 }

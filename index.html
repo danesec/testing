@@ -1,3 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Financial Tracker</h1>
+    </header>
+    <main>
+        <section id="financialSummary">
+            <div>
+                <p><strong>Total Revenue:</strong> $<span id="revenueSubtotal">0.00</span></p>
+                <p><strong>Total Expenses:</strong> $<span id="expensesSubtotal">0.00</span></p>
+                <p><strong>Net Balance:</strong> $<span id="totalBalance">0.00</span></p>
+            </div>
+            <div id="chartsContainer">
+                <!-- Charts will be inserted here -->
+            </div>
+        </section>
+        <section id="revenueSection">
+            <h2>Revenue</h2>
+            <input type="text" id="revenueSearch" placeholder="Search by name, receipt, or contact" aria-label="Search Revenue">
+            <select id="revenueTypeFilter">
+                <option value="">All Types</option>
+                <option value="Donation">Donation</option>
+                <!-- Add other types as needed -->
+            </select>
+            <button id="addRevenueBtn">Add Revenue</button>
+            <table id="revenueTable">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Date</th>
+                        <th>Receipt #</th>
+                        <th>Payment</th>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>Subtotal</th>
+                        <th>Fee</th>
+                        <th>Notes</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="revenueTableBody">
+                    <!-- Default Revenue Entries -->
+                    <tr>
+                        <td>Donation</td>
+                        <td>2024-12-11</td>
+                        <td>R001</td>
+                        <td>Credit Card</td>
+                        <td>John Doe</td>
+                        <td>john@example.com</td>
+                        <td>$150.00</td>
+                        <td>$5.00</td>
+                        <td>First Donation</td>
+                        <td>
+                            <button class="editBtn">Edit</button>
+                            <button class="deleteBtn">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section id="expensesSection">
+            <h2>Expenses</h2>
+            <input type="text" id="expenseSearch" placeholder="Search by name, receipt, or contact" aria-label="Search Expenses">
+            <select id="expenseTypeFilter">
+                <option value="">All Types</option>
+                <option value="Catering">Catering</option>
+                <!-- Add other types as needed -->
+            </select>
+            <button id="addExpenseBtn">Add Expense</button>
+            <table id="expensesTable">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Date</th>
+                        <th>Receipt #</th>
+                        <th>Payment</th>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>Subtotal</th>
+                        <th>Fee</th>
+                        <th>Notes</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="expensesTableBody">
+                    <!-- Default Expenses Entries -->
+                    <tr>
+                        <td>Catering</td>
+                        <td>2024-12-10</td>
+                        <td>E001</td>
+                        <td>Cash</td>
+                        <td>Jane Smith</td>
+                        <td>jane@example.com</td>
+                        <td>$100.00</td>
+                        <td>$0.00</td>
+                        <td>Event Catering</td>
+                        <td>
+                            <button class="editBtn">Edit</button>
+                            <button class="deleteBtn">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <!-- Modals -->
+<div id="revenueModal" class="modal">
 <!-- Add Revenue Modal -->
 <div id="addRevenueModal" class="modal">
     <div class="modal-content">

@@ -1,16 +1,19 @@
+// Ensure elements exist before adding event listeners
 document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
     updateSummary();
     if (typeof drawCharts === 'function') {
-        drawCharts(); // Ensure drawCharts is defined before calling it
+        drawCharts();
     }
 });
 
 function setupEventListeners() {
     const addRevenueBtn = document.getElementById('addRevenueBtn');
     const addExpenseBtn = document.getElementById('addExpenseBtn');
+    
+    // ... existing code ...
 
-    // Check if elements exist before adding event listeners
+    // Check if elements exist
     if (addRevenueBtn) {
         addRevenueBtn.addEventListener('click', () => {
             clearForm('addRevenue');

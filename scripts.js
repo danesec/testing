@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
     updateSummary();
+    drawCharts();
 });
 
 function setupEventListeners() {
@@ -38,6 +39,15 @@ function setupEventListeners() {
 
     // Search Revenue Table
     document.getElementById('revenueSearch').addEventListener('input', filterTable);
+
+    // Search Expense Table
+    document.getElementById('expenseSearch').addEventListener('input', filterTable);
+
+    // Type Filter for Revenue Table
+    document.getElementById('revenueTypeFilter').addEventListener('change', filterTable);
+
+    // Type Filter for Expense Table
+    document.getElementById('expenseTypeFilter').addEventListener('change', filterTable);
 
     // Add event listeners for dynamic 'Edit' and 'Delete' buttons
     document.addEventListener('click', (event) => {
@@ -84,18 +94,28 @@ function addEntry(type) {
 
     tableBody.appendChild(row);
     updateSummary();
+    drawCharts(); // Redraw charts after adding an entry
 }
 
 function filterTable() {
     const query = document.getElementById('revenueSearch').value.toLowerCase();
-    const rows = document.querySelectorAll('#revenueTableBody tr');
+    const revenueRows = document.querySelectorAll('#revenueTableBody tr');
+    const expenseRows = document.querySelectorAll('#expensesTableBody tr');
+    const revenueTypeFilter = document.getElementById('revenueTypeFilter').value.toLowerCase();
+    const expenseTypeFilter = document.getElementById('expenseTypeFilter').value.toLowerCase();
 
+    filterRows(revenueRows, query, revenueTypeFilter);
+    filterRows(expenseRows, query, expenseTypeFilter);
+}
+
+function filterRows(rows, query, typeFilter) {
     rows.forEach(row => {
         const description = row.cells[0].textContent.toLowerCase();
         const receipt = row.cells[2].textContent.toLowerCase();
         const contact = row.cells[5].textContent.toLowerCase();
-        const matches = description.includes(query) || receipt.includes(query) || contact.includes(query);
-        row.style.display = matches ? '' : 'none';
+        const matchesQuery = description.includes(query) || receipt.includes(query) || contact.includes(query);
+        const matchesType = typeFilter === '' || description.includes(typeFilter);
+        row.style.display = matchesQuery && matchesType ? '' : 'none';
     });
 }
 
@@ -134,9 +154,15 @@ function handleEdit(row) {
     document.getElementById(`${formPrefix}Modal`).style.display = 'flex';
     row.remove();
     updateSummary();
+    drawCharts(); // Redraw charts after editing an entry
 }
 
 function handleDelete(row) {
     row.remove();
     updateSummary();
+    drawCharts(); // Redraw charts after deleting an entry
+}
+
+function drawCharts() {
+    // Implement chart drawing logic using a library like Chart.js
 }

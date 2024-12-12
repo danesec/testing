@@ -78,7 +78,7 @@ function clearForm(formPrefix) {
 function filterTable() {
     const query = document.getElementById('revenueSearch').value.toLowerCase();
     const revenueRows = document.querySelectorAll('#revenueTableBody tr');
-    const expenseRows = document.querySelectorAll('#expensesTableBody tr');
+    const expenseRows = document.querySelectorAll('#expenseTableBody tr');
     const revenueTypeFilter = document.getElementById('revenueTypeFilter').value.toLowerCase();
     const expenseTypeFilter = document.getElementById('expenseTypeFilter').value.toLowerCase();
 

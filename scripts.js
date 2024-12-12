@@ -168,6 +168,5 @@ function handleEdit(row) {
 function handleDelete(row) {
     row.remove();
     updateSummary();
-// Ensure all functions and blocks are correctly closed
-171| drawCharts(); // Redraw charts after deleting an entry
-172| } // Add missing closing brace here for handleDelete function
+    drawCharts(); // Redraw charts after deleting an entry
+}

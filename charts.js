@@ -42,7 +42,6 @@ function drawCharts() {
             }
         });
     }
-},
         options: {
             scales: {
                 y: {

@@ -5,16 +5,16 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function setupEventListeners() {
-    // Open Revenue Modal
+    // Open Add Revenue Modal
     document.getElementById('addRevenueBtn').addEventListener('click', () => {
-        clearForm('revenue');
-        document.getElementById('revenueModal').style.display = 'flex';
+        clearForm('addRevenue');
+        document.getElementById('addRevenueModal').style.display = 'flex';
     });
 
-    // Open Expense Modal
+    // Open Add Expense Modal
     document.getElementById('addExpenseBtn').addEventListener('click', () => {
-        clearForm('expense');
-        document.getElementById('expenseModal').style.display = 'flex';
+        clearForm('addExpense');
+        document.getElementById('addExpenseModal').style.display = 'flex';
     });
 
     // Close Modals
@@ -25,30 +25,38 @@ function setupEventListeners() {
         });
     });
 
-    // Handle Revenue Form Submission
-    document.getElementById('revenueForm').addEventListener('submit', (event) => {
+    // Handle Add Revenue Form Submission
+    document.getElementById('addRevenueForm').addEventListener('submit', (event) => {
+        event.preventDefault();
+        addEntry('Revenue');
+        document.getElementById('addRevenueModal').style.display = 'none';
+    });
+
+    // Handle Edit Revenue Form Submission
+    document.getElementById('editRevenueForm').addEventListener('submit', (event) => {
         event.preventDefault();
         updateEntry('Revenue');
-        document.getElementById('revenueModal').style.display = 'none';
+        document.getElementById('editRevenueModal').style.display = 'none';
     });
 
-    // Handle Expense Form Submission
-    document.getElementById('expenseForm').addEventListener('submit', (event) => {
+    // Handle Add Expense Form Submission
+    document.getElementById('addExpenseForm').addEventListener('submit', (event) => {
+        event.preventDefault();
+        addEntry('Expense');
+        document.getElementById('addExpenseModal').style.display = 'none';
+    });
+
+    // Handle Edit Expense Form Submission
+    document.getElementById('editExpenseForm').addEventListener('submit', (event) => {
         event.preventDefault();
         updateEntry('Expense');
-        document.getElementById('expenseModal').style.display = 'none';
+        document.getElementById('editExpenseModal').style.display = 'none';
     });
 
-    // Search Revenue Table
+    // Search and Filter Tables
     document.getElementById('revenueSearch').addEventListener('input', filterTable);
-
-    // Search Expense Table
     document.getElementById('expenseSearch').addEventListener('input', filterTable);
-
-    // Type Filter for Revenue Table
     document.getElementById('revenueTypeFilter').addEventListener('change', filterTable);
-
-    // Type Filter for Expense Table
     document.getElementById('expenseTypeFilter').addEventListener('change', filterTable);
 
     // Add event listeners for dynamic 'Edit' and 'Delete' buttons
@@ -62,8 +70,8 @@ function setupEventListeners() {
 }
 
 function addEntry(type) {
-    const formPrefix = type.toLowerCase();
-    const tableBody = document.getElementById(`${formPrefix}TableBody`);
+    const formPrefix = `add${type}`;
+    const tableBody = document.getElementById(`${type.toLowerCase()}TableBody`);
 
     const entryData = {
         type: document.getElementById(`${formPrefix}Type`).value,
@@ -143,7 +151,7 @@ function calculateTotal(tableBodyId) {
 }
 
 function handleEdit(row) {
-    const formPrefix = row.closest('table').id === 'revenueTable' ? 'revenue' : 'expense';
+    const formPrefix = row.closest('table').id === 'revenueTable' ? 'editRevenue' : 'editExpense';
     document.getElementById(`${formPrefix}Type`).value = row.cells[0].textContent;
     document.getElementById(`${formPrefix}Date`).value = row.cells[1].textContent;
     document.getElementById(`${formPrefix}Receipt`).value = row.cells[2].textContent;
@@ -154,7 +162,6 @@ function handleEdit(row) {
     document.getElementById(`${formPrefix}Fee`).value = parseFloat(row.cells[7].textContent.replace('$', ''));
     document.getElementById(`${formPrefix}Notes`).value = row.cells[8].textContent;
     document.getElementById(`${formPrefix}Modal`).style.display = 'flex';
-
     document.getElementById(`${formPrefix}Form`).dataset.editingRow = row.rowIndex;
 }
 
@@ -165,8 +172,8 @@ function handleDelete(row) {
 }
 
 function updateEntry(type) {
-    const formPrefix = type.toLowerCase();
-    const tableBody = document.getElementById(`${formPrefix}TableBody`);
+    const formPrefix = `edit${type}`;
+    const tableBody = document.getElementById(`${type.toLowerCase()}TableBody`);
     const editingRow = document.getElementById(`${formPrefix}Form`).dataset.editingRow;
 
     const entryData = {

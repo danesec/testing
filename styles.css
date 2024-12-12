@@ -94,7 +94,6 @@ button:hover {
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    background-color: white;
 }
 
 .modal-content {
@@ -104,7 +103,6 @@ button:hover {
     width: 50%;
     max-width: 500px;
     text-align: left;
-    background-color: white;
 }
 
 .modal-background {
@@ -115,6 +113,12 @@ button:hover {
     float: right;
     font-size: 1.5rem;
     cursor: pointer;
+}
+.modal-form {
+    background-color: white; /* Ensures the modal has a visible background */
+    padding: 20px;           /* Adds spacing inside the modal */
+    border-radius: 5px;      /* Optional: Adds rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
 }
 
 input[type="text"], input[type="date"], input[type="number"], input[type="email"], textarea {

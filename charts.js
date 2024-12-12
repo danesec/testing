@@ -1,11 +1,10 @@
-import Chart from 'chart.js/auto';
-
+// Remove import statement and ensure proper loading of Chart.js
 document.addEventListener('DOMContentLoaded', drawCharts);
 
 function drawCharts() {
     const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, {
-        type: 'bar', // or 'line', 'pie', etc.
+        type: 'bar',
         data: {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
             datasets: [{

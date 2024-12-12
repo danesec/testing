@@ -12,7 +12,7 @@ function addEntry(type) {
         name: document.getElementById(`${formPrefix}Name`).value,
         contact: document.getElementById(`${formPrefix}Contact`).value,
         subtotal: parseFloat(document.getElementById(`${formPrefix}SubtotalInput`).value).toFixed(2),
-        fee: parseFloat(document.getElementById(`${formPrefix}Fee`).value).toFixed(2),
+        fee: parseFloat(document.getElementById(`${formPrefix}Fee}`).value).toFixed(2),
         notes: document.getElementById(`${formPrefix}Notes`).value
     };
 
@@ -48,11 +48,11 @@ function updateEntry(type) {
         date: document.getElementById(`${formPrefix}Date`).value,
         receipt: document.getElementById(`${formPrefix}Receipt`).value,
         payment: document.getElementById(`${formPrefix}Payment`).value,
-        name: document.getElementById(`${formPrefix}Name`).value,
+        name: document.getElementById(`${formPrefix}Name}`).value,
         contact: document.getElementById(`${formPrefix}Contact`).value,
         subtotal: parseFloat(document.getElementById(`${formPrefix}SubtotalInput`).value).toFixed(2),
-        fee: parseFloat(document.getElementById(`${formPrefix}Fee`).value).toFixed(2),
-        notes: document.getElementById(`${formPrefix}Notes`).value
+        fee: parseFloat(document.getElementById(`${formPrefix}Fee}`).value).toFixed(2),
+        notes: document.getElementById(`${formPrefix}Notes}`).value
     };
 
     const row = tableBody.rows[editingRow - 1];
@@ -75,24 +75,4 @@ function clearForm(formPrefix) {
     delete document.getElementById(`${formPrefix}Form`).dataset.editingRow;
 }
 
-function filterTable() {
-    const query = document.getElementById('revenueSearch').value.toLowerCase();
-    const revenueRows = document.querySelectorAll('#revenueTableBody tr');
-    const expenseRows = document.querySelectorAll('#expenseTableBody tr');
-    const revenueTypeFilter = document.getElementById('revenueTypeFilter').value.toLowerCase();
-    const expenseTypeFilter = document.getElementById('expenseTypeFilter').value.toLowerCase();
-
-    filterRows(revenueRows, query, revenueTypeFilter);
-    filterRows(expenseRows, query, expenseTypeFilter);
-}
-
-function filterRows(rows, query, typeFilter) {
-    rows.forEach(row => {
-        const description = row.cells[0].textContent.toLowerCase();
-        const receipt = row.cells[2].textContent.toLowerCase();
-        const contact = row.cells[5].textContent.toLowerCase();
-        const matchesQuery = description.includes(query) || receipt.includes(query) || contact.includes(query);
-        const matchesType = typeFilter === '' || description.includes(typeFilter);
-        row.style.display = matchesQuery && matchesType ? '' : 'none';
-    });
-}
+// Remove the filterTable and filterRows functions from forms.js

@@ -1,65 +1,119 @@
 document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
     updateSummary();
-    drawCharts();
+    if (typeof drawCharts === 'function') {
+        drawCharts(); // Ensure drawCharts is defined before calling it
+    }
 });
 
 function setupEventListeners() {
-    // Open Add Revenue Modal
-    document.getElementById('addRevenueBtn').addEventListener('click', () => {
-        clearForm('addRevenue');
-        document.getElementById('addRevenueModal').style.display = 'flex';
-        document.getElementById('addRevenueModal').classList.add('modal-background'); // Ensure background is added
-    });
+    const addRevenueBtn = document.getElementById('addRevenueBtn');
+    const addExpenseBtn = document.getElementById('addExpenseBtn');
 
-    // Open Add Expense Modal
-    document.getElementById('addExpenseBtn').addEventListener('click', () => {
-        clearForm('addExpense');
-        document.getElementById('addExpenseModal').style.display = 'flex';
-        document.getElementById('addExpenseModal').classList.add('modal-background'); // Ensure background is added
-    });
+    // Check if elements exist before adding event listeners
+    if (addRevenueBtn) {
+        addRevenueBtn.addEventListener('click', () => {
+            clearForm('addRevenue');
+            const modal = document.getElementById('addRevenueModal');
+            if (modal) {
+                modal.style.display = 'flex';
+                modal.classList.add('modal-background');
+            }
+        });
+    }
+
+    if (addExpenseBtn) {
+        addExpenseBtn.addEventListener('click', () => {
+            clearForm('addExpense');
+            const modal = document.getElementById('addExpenseModal');
+            if (modal) {
+                modal.style.display = 'flex';
+                modal.classList.add('modal-background');
+            }
+        });
+    }
 
     // Close Modals
     document.querySelectorAll('.close').forEach(closeBtn => {
         closeBtn.addEventListener('click', (event) => {
             const modalId = event.target.getAttribute('data-modal');
-            document.getElementById(modalId).style.display = 'none';
+            const modalElement = document.getElementById(modalId);
+            if (modalElement) {
+                modalElement.style.display = 'none';
+            }
         });
     });
 
     // Handle Add Revenue Form Submission
-    document.getElementById('addRevenueForm').addEventListener('submit', (event) => {
-        event.preventDefault();
-        addEntry('Revenue');
-        document.getElementById('addRevenueModal').style.display = 'none';
-    });
+    const addRevenueForm = document.getElementById('addRevenueForm');
+    if (addRevenueForm) {
+        addRevenueForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            addEntry('Revenue');
+            const modal = document.getElementById('addRevenueModal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        });
+    }
 
     // Handle Edit Revenue Form Submission
-    document.getElementById('editRevenueForm').addEventListener('submit', (event) => {
-        event.preventDefault();
-        updateEntry('Revenue');
-        document.getElementById('editRevenueModal').style.display = 'none';
-    });
+    const editRevenueForm = document.getElementById('editRevenueForm');
+    if (editRevenueForm) {
+        editRevenueForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            updateEntry('Revenue');
+            const modal = document.getElementById('editRevenueModal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        });
+    }
 
     // Handle Add Expense Form Submission
-    document.getElementById('addExpenseForm').addEventListener('submit', (event) => {
-        event.preventDefault();
-        addEntry('Expense');
-        document.getElementById('addExpenseModal').style.display = 'none';
-    });
+    const addExpenseForm = document.getElementById('addExpenseForm');
+    if (addExpenseForm) {
+        addExpenseForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            addEntry('Expense');
+            const modal = document.getElementById('addExpenseModal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        });
+    }
 
     // Handle Edit Expense Form Submission
-    document.getElementById('editExpenseForm').addEventListener('submit', (event) => {
-        event.preventDefault();
-        updateEntry('Expense');
-        document.getElementById('editExpenseModal').style.display = 'none';
-    });
+    const editExpenseForm = document.getElementById('editExpenseForm');
+    if (editExpenseForm) {
+        editExpenseForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            updateEntry('Expense');
+            const modal = document.getElementById('editExpenseModal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        });
+    }
 
     // Search and Filter Tables
-    document.getElementById('revenueSearch').addEventListener('input', filterTable);
-    document.getElementById('expenseSearch').addEventListener('input', filterTable);
-    document.getElementById('revenueTypeFilter').addEventListener('change', filterTable);
-    document.getElementById('expenseTypeFilter').addEventListener('change', filterTable);
+    const revenueSearch = document.getElementById('revenueSearch');
+    const expenseSearch = document.getElementById('expenseSearch');
+    const revenueTypeFilter = document.getElementById('revenueTypeFilter');
+    const expenseTypeFilter = document.getElementById('expenseTypeFilter');
+
+    if (revenueSearch) {
+        revenueSearch.addEventListener('input', filterTable);
+    }
+    if (expenseSearch) {
+        expenseSearch.addEventListener('input', filterTable);
+    }
+    if (revenueTypeFilter) {
+        revenueTypeFilter.addEventListener('change', filterTable);
+    }
+    if (expenseTypeFilter) {
+        expenseTypeFilter.addEventListener('change', filterTable);
+    }
 
     // Add event listeners for dynamic 'Edit' and 'Delete' buttons
     document.addEventListener('click', (event) => {
@@ -106,7 +160,9 @@ function addEntry(type) {
 
     tableBody.appendChild(row);
     updateSummary();
-    drawCharts(); // Redraw charts after adding an entry
+    if (typeof drawCharts === 'function') {
+        drawCharts(); // Redraw charts after adding an entry
+    }
 }
 
 function filterTable() {
@@ -170,5 +226,7 @@ function handleEdit(row) {
 function handleDelete(row) {
     row.remove();
     updateSummary();
-    drawCharts(); // Redraw charts after deleting an entry
+    if (typeof drawCharts === 'function') {
+        drawCharts(); // Redraw charts after deleting an entry
+    }
 }

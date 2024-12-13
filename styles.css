@@ -170,6 +170,9 @@ label {
 
 .dropdown:hover .dropdown-content {
     display: block;
+    /* Ensure dropdown stays within viewport */
+    right: auto;
+    left: auto;
 }
 
 .dropdown-content a {

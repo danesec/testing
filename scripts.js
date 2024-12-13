@@ -216,3 +216,23 @@ function editCreditCard() {
         document.getElementById('creditCardFee').textContent = `$${(parseFloat(percentage) + parseFloat(amount)).toFixed(2)}`;
     }
 }
+
+function toggleStatus(element) {
+    const row = element.closest('tr');
+    const statusCell = row.querySelector('.status');
+    if (statusCell.textContent === 'Paid') {
+        statusCell.textContent = 'Unpaid';
+        row.classList.remove('paid');
+        row.classList.add('unpaid');
+    } else {
+        statusCell.textContent = 'Paid';
+        row.classList.remove('unpaid');
+        row.classList.add('paid');
+    }
+}
+
+document.querySelectorAll('.toggleStatusBtn').forEach(button => {
+    button.addEventListener('click', function() {
+        toggleStatus(this);
+    });
+});

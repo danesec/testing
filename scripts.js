@@ -55,19 +55,6 @@ function setupEventListeners() {
         });
     }
 
-    // Handle Edit Revenue Form Submission
-    const editRevenueForm = document.getElementById('editRevenueForm');
-    if (editRevenueForm) {
-        editRevenueForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-            updateEntry('Revenue');
-            const modal = document.getElementById('editRevenueModal');
-            if (modal) {
-                modal.style.display = 'none';
-            }
-        });
-    }
-
     // Handle Add Expense Form Submission
     const addExpenseForm = document.getElementById('addExpenseForm');
     if (addExpenseForm) {
@@ -217,67 +204,15 @@ function handleDelete(row) {
     }
 }
 
-function drawCharts() {
-    const chartElement = document.getElementById('myChart');
-    const chartTypeElement = document.getElementById('chartType');
-    const filterTypeElement = document.getElementById('filterType');
+function editCreditCard() {
+    // Open a simple popup to enter the % and $ amount for the Credit Card fee
+    const defaultPercentage = 2.9;
+    const defaultAmount = 0.30;
 
-    if (!chartTypeElement || !filterTypeElement) {
-        console.error('Required elements not found in the DOM');
-        return;
+    const percentage = prompt("Enter Credit Card Fee Percentage:", defaultPercentage);
+    const amount = prompt("Enter Credit Card Fee Amount:", defaultAmount);
+
+    if (percentage !== null && amount !== null) {
+        document.getElementById('creditCardFee').textContent = `$${(parseFloat(percentage) + parseFloat(amount)).toFixed(2)}`;
     }
-
-    const chartType = chartTypeElement.value;
-    const filterType = filterTypeElement.value;
-
-    const data = getData(filterType);
-
-    if (chartElement) {
-        const ctx = chartElement.getContext('2d');
-
-        if (chartInstance) {
-            chartInstance.destroy();
-        }
-
-        chartInstance = new Chart(ctx, {
-            type: chartType,
-            data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: data,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)',
-                        'rgba(201, 203, 207, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)',
-                        'rgba(201, 203, 207, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    }
-}
-
-function getData(filterType) {
-    return [12, 19, 3, 5, 2, 3, 7]; // Example data
 }

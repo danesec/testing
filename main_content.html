@@ -32,65 +32,68 @@
             </select>
         </div>
     </section>
-    <section id="revenueSection">
-        <h2>Revenue</h2>
-        <input type="text" id="revenueSearch" placeholder="Search by name, receipt, or contact" aria-label="Search Revenue">
-        <select id="revenueTypeFilter">
-            <option value="">All Types</option>
-            <option value="Registration">Registration</option>
-            <option value="Sponsorship">Sponsorship</option>
-            <option value="Donation">Donation</option>
-            <option value="Auction">Auction</option>
-            <option value="Other">Other</option>
-        </select>
-        <button id="addRevenueBtn">Add Revenue</button>
-        <table id="revenueTable">
-            <thead>
-                <tr>
-                    <th>Type</th>
-                    <th>Date</th>
-                    <th>Receipt #</th>
-                    <th>Payment</th>
-                    <th>Name</th>
-                    <th>Contact</th>
-                    <th>Subtotal</th>
-                    <th>Fee</th>
-                    <th>Notes</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="revenueTableBody">
-                <!-- Default Revenue Entries -->
-            </tbody>
-        </table>
-    </section>
-    <section id="expensesSection">
-        <h2>Expenses</h2>
-        <input type="text" id="expenseSearch" placeholder="Search by name, receipt, or contact" aria-label="Search Expenses">
-        <select id="expenseTypeFilter">
-            <option value="">All Types</option>
-            <option value="Registration">Registration</option>
-            <option value="Credit Card">Credit Card</option>
-            <option value="Catering">Catering</option>
-            <option value="Other">Other</option>
-        </select>
-        <button id="addExpenseBtn">Add Expense</button>
-        <table id="expenseTable">
-            <thead>
-                <tr>
-                    <th>Type</th>
-                    <th>Date</th>
-                    <th>Receipt #</th>
-                    <th>Payment</th>
-                    <th>Name</th>
-                    <th>Contact</th>
-                    <th>Subtotal</th>
-                    <th>Fee</th>
-                    <th>Notes</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="expenseTableBody">
+<section id="revenueSection">
+    <h2>Revenue</h2>
+    <input type="text" id="revenueSearch" placeholder="Search by name, receipt, or contact" aria-label="Search Revenue">
+    <select id="revenueTypeFilter">
+        <option value="">All Types</option>
+        <option value="Registration">Registration</option>
+        <option value="Sponsorship">Sponsorship</option>
+        <option value="Donation">Donation</option>
+        <option value="Auction">Auction</option>
+        <option value="Other">Other</option>
+    </select>
+    <button id="addRevenueBtn">Add Revenue</button>
+    <table id="revenueTable">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Receipt #</th>
+                <th>Payment</th>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Subtotal</th>
+                <th>Fee</th>
+                <th>Notes</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="revenueTableBody">
+            <!-- Default Revenue Entries -->
+        </tbody>
+    </table>
+</section>
+
+<section id="expensesSection">
+    <h2>Expenses</h2>
+    <input type="text" id="expenseSearch" placeholder="Search by name, receipt, or contact" aria-label="Search Expenses">
+    <select id="expenseTypeFilter">
+        <option value="">All Types</option>
+        <option value="Registration">Registration</option>
+        <option value="Credit Card">Credit Card</option>
+        <option value="Catering">Catering</option>
+        <option value="Other">Other</option>
+    </select>
+    <button id="addExpenseBtn">Add Expense</button>
+    <table id="expenseTable">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Receipt #</th>
+                <th>Payment</th>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Subtotal</th>
+                <th>Fee</th>
+                <th>Notes</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="expenseTableBody">
                 <!-- Default Credit Card Entry -->
                 <tr>
                     <td>Credit Card</td>

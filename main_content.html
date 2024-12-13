@@ -32,70 +32,85 @@
             </select>
         </div>
     </section>
-<section id="revenueSection">
-    <h2>Revenue</h2>
-    <input type="text" id="revenueSearch" placeholder="Search by name, receipt, or contact" aria-label="Search Revenue">
-    <select id="revenueTypeFilter">
-        <option value="">All Types</option>
-        <option value="Registration">Registration</option>
-        <option value="Sponsorship">Sponsorship</option>
-        <option value="Donation">Donation</option>
-        <option value="Auction">Auction</option>
-        <option value="Other">Other</option>
-    </select>
-    <button id="addRevenueBtn">Add Revenue</button>
-    <table id="revenueTable">
-        <thead>
-            <tr>
-                <th>Type</th>
-                <th>Date</th>
-                <th>Receipt #</th>
-                <th>Payment</th>
-                <th>Name</th>
-                <th>Contact</th>
-                <th>Subtotal</th>
-                <th>Fee</th>
-                <th>Notes</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody id="revenueTableBody">
-            <!-- Default Revenue Entries -->
-        </tbody>
-    </table>
-</section>
-
-<section id="expensesSection">
-    <h2>Expenses</h2>
-    <input type="text" id="expenseSearch" placeholder="Search by name, receipt, or contact" aria-label="Search Expenses">
-    <select id="expenseTypeFilter">
-        <option value="">All Types</option>
-        <option value="Registration">Registration</option>
-        <option value="Credit Card">Credit Card</option>
-        <option value="Catering">Catering</option>
-        <option value="Other">Other</option>
-    </select>
-    <button id="addExpenseBtn">Add Expense</button>
-    <table id="expenseTable">
-        <thead>
-            <tr>
-                <th>Type</th>
-                <th>Date</th>
-                <th>Receipt #</th>
-                <th>Payment</th>
-                <th>Name</th>
-                <th>Contact</th>
-                <th>Subtotal</th>
-                <th>Fee</th>
-                <th>Notes</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody id="expenseTableBody">
-                <!-- Default Credit Card Entry -->
+    <section id="revenueSection">
+        <h2>Revenue</h2>
+        <input type="text" id="revenueSearch" placeholder="Search by name, receipt, or contact" aria-label="Search Revenue">
+        <select id="revenueTypeFilter">
+            <option value="">All Types</option>
+            <option value="Registration">Registration</option>
+            <option value="Sponsorship">Sponsorship</option>
+            <option value="Donation">Donation</option>
+            <option value="Auction">Auction</option>
+            <option value="Other">Other</option>
+        </select>
+        <button id="addRevenueBtn">Add Revenue</button>
+        <table id="revenueTable">
+            <thead>
                 <tr>
+                    <th>Type</th>
+                    <th>Date</th>
+                    <th>Receipt #</th>
+                    <th>Payment</th>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Subtotal</th>
+                    <th>Fee</th>
+                    <th>Notes</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="revenueTableBody">
+                <!-- Default Revenue Entries -->
+                <tr class="unpaid">
+                    <td>Example Type</td>
+                    <td>Example Date</td>
+                    <td>Example Receipt</td>
+                    <td>Example Payment</td>
+                    <td>Example Name</td>
+                    <td>Example Contact</td>
+                    <td>Example Subtotal</td>
+                    <td>Example Fee</td>
+                    <td>Example Notes</td>
+                    <td class="status">Unpaid</td>
+                    <td>
+                        <button class="toggleStatusBtn">Toggle Status</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="expensesSection">
+        <h2>Expenses</h2>
+        <input type="text" id="expenseSearch" placeholder="Search by name, receipt, or contact" aria-label="Search Expenses">
+        <select id="expenseTypeFilter">
+            <option value="">All Types</option>
+            <option value="Registration">Registration</option>
+            <option value="Credit Card">Credit Card</option>
+            <option value="Catering">Catering</option>
+            <option value="Other">Other</option>
+        </select>
+        <button id="addExpenseBtn">Add Expense</button>
+        <table id="expenseTable">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Date</th>
+                    <th>Receipt #</th>
+                    <th>Payment</th>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Subtotal</th>
+                    <th>Fee</th>
+                    <th>Notes</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="expenseTableBody">
+                <!-- Default Credit Card Entry -->
+                <tr class="unpaid">
                     <td>Credit Card</td>
                     <td>Auto</td>
                     <td>Auto</td>
@@ -105,8 +120,9 @@
                     <td id="creditCardSubtotal"></td>
                     <td id="creditCardFee"></td>
                     <td>Credit Card Fees</td>
+                    <td class="status">Unpaid</td>
                     <td>
-                        <button class="editBtn" onclick="editCreditCard()">Edit</button>
+                        <button class="toggleStatusBtn">Toggle Status</button>
                     </td>
                 </tr>
             </tbody>

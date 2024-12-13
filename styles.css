@@ -158,19 +158,20 @@ label {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
+    min-width: 160px; /* Fixed width to prevent resizing */
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     top: 100%; /* Position below the button */
-    left: 0; /* Align with the left edge of the parent */
-    right: auto; /* Ensure alignment to the left unless adjusted */
-    transform: translateX(0); /* Reset unnecessary transformations */
-    transform-origin: top left; /* Adjust origin for better alignment */
+    left: 0; /* Align to the left edge of the parent */
+    right: auto; /* Ensure no conflicting alignment */
+    transform: translateX(0); /* Keep static alignment */
+    transform-origin: top left; /* Prevent shifts based on origin */
 }
 
 .dropdown:hover .dropdown-content {
-    display: block;
+    display: block; /* Show dropdown consistently */
 }
+
 
 
 .dropdown-content a {

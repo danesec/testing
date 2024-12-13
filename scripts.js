@@ -236,3 +236,53 @@ document.querySelectorAll('.toggleStatusBtn').forEach(button => {
         toggleStatus(this);
     });
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('revenue_expenses.json')
+        .then(response => response.json())
+        .then(data => {
+            populateTable('revenueTableBody', data.revenue);
+            populateTable('expenseTableBody', data.expenses);
+        })
+        .catch(error => console.error('Error loading JSON:', error));
+});
+
+function populateTable(tableBodyId, entries) {
+    const tableBody = document.getElementById(tableBodyId);
+    entries.forEach(entry => {
+        const row = document.createElement('tr');
+        row.classList.add(entry.status === 'Paid' ? 'paid' : 'unpaid');
+        
+        row.innerHTML = `
+            <td>${entry.type}</td>
+            <td>${entry.date}</td>
+            <td>${entry.receipt}</td>
+            <td>${entry.payment}</td>
+            <td>${entry.name}</td>
+            <td>${entry.contact}</td>
+            <td>${entry.subtotal.toFixed(2)}</td>
+            <td>${entry.fee.toFixed(2)}</td>
+            <td>${entry.notes}</td>
+            <td class="status">${entry.status}</td>
+            <td>
+                <button class="toggleStatusBtn" onclick="toggleStatus(this)">Toggle Status</button>
+            </td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+function toggleStatus(element) {
+    const row = element.closest('tr');
+    const statusCell = row.querySelector('.status');
+    if (statusCell.textContent === 'Paid') {
+        statusCell.textContent = 'Unpaid';
+        row.classList.remove('paid');
+        row.classList.add('unpaid');
+    } else {
+        statusCell.textContent = 'Paid';
+        row.classList.remove('unpaid');
+        row.classList.add('paid');
+    }
+}

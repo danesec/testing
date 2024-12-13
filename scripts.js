@@ -290,3 +290,44 @@ function toggleStatus(element) {
         row.classList.add('paid');
     }
 }
+function markAsPaid(element) {
+    const row = element.closest('tr');
+    const statusCell = row.querySelector('.status');
+    statusCell.textContent = 'Paid';
+    row.classList.remove('unpaid');
+    row.classList.add('paid');
+}
+
+function markAsUnpaid(element) {
+    const row = element.closest('tr');
+    const statusCell = row.querySelector('.status');
+    statusCell.textContent = 'Unpaid';
+    row.classList.remove('paid');
+    row.classList.add('unpaid');
+}
+
+function editEntry(element) {
+    // Implement edit logic here
+    const row = element.closest('tr');
+    const formPrefix = row.closest('table').id === 'revenueTable' ? 'editRevenue' : 'editExpense';
+    document.getElementById(`${formPrefix}Type`).value = row.cells[0].textContent;
+    document.getElementById(`${formPrefix}Date`).value = row.cells[1].textContent;
+    document.getElementById(`${formPrefix}Receipt`).value = row.cells[2].textContent;
+    document.getElementById(`${formPrefix}Payment`).value = row.cells[3].textContent;
+    document.getElementById(`${formPrefix}Name`).value = row.cells[4].textContent;
+    document.getElementById(`${formPrefix}Contact`).value = row.cells[5].textContent;
+    document.getElementById(`${formPrefix}SubtotalInput`).value = parseFloat(row.cells[6].textContent.replace('$', ''));
+    document.getElementById(`${formPrefix}Fee`).value = parseFloat(row.cells[7].textContent.replace('$', ''));
+    document.getElementById(`${formPrefix}Notes`).value = row.cells[8].textContent;
+    document.getElementById(`${formPrefix}Modal`).style.display = 'flex';
+    document.getElementById(`${formPrefix}Form`).dataset.editingRow = row.rowIndex;
+}
+
+function deleteEntry(element) {
+    const row = element.closest('tr');
+    row.remove();
+    updateSummary();
+    if (typeof drawCharts === 'function') {
+        drawCharts();
+    }
+}

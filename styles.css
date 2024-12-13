@@ -40,7 +40,8 @@ section {
     max-width: 100%;
     width: 75%;
     margin-left: auto; /* Align to the right */
-    overflow: overlay; /* Ensures the section expands with the table content */
+    overflow: visible; /* Ensures dropdown is not clipped */
+    position: relative; /* Allows dropdown to position correctly */
 }
 
 h2 {

@@ -364,13 +364,18 @@ document.addEventListener('mouseover', (event) => {
         const content = dropdown.querySelector('.dropdown-content');
         const rect = content.getBoundingClientRect();
 
-        if (rect.right > window.innerWidth) {
-            content.style.left = 'auto';
-            content.style.right = '0'; // Align to the right if overflowing
-        } else {
-            content.style.left = '0'; // Default alignment
-            content.style.right = 'auto';
+        // Check for overflow only once, not during every hover
+        if (!content.dataset.aligned) {
+            if (rect.right > window.innerWidth) {
+                content.style.left = 'auto';
+                content.style.right = '0';
+            } else {
+                content.style.left = '0';
+                content.style.right = 'auto';
+            }
+            content.dataset.aligned = 'true'; // Mark as aligned
         }
     }
 });
+
 

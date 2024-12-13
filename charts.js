@@ -1,6 +1,7 @@
+let chartInstance = null;
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Wait for a short delay to ensure elements are present in the DOM
-    setTimeout(() => {
+    function initializeCharts() {
         if (document.getElementById('chartType') && document.getElementById('filterType')) {
             drawCharts();
 
@@ -9,7 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             console.error('Required elements not found in the DOM');
         }
-    }, 100); // 100ms delay
+    }
+
+    // Wait for a short delay to ensure elements are present in the DOM
+    setTimeout(initializeCharts, 100); // 100ms delay
 });
 
 function drawCharts() {
@@ -29,7 +33,13 @@ function drawCharts() {
 
     if (chartElement) {
         const ctx = chartElement.getContext('2d');
-        new Chart(ctx, {
+
+        // Destroy existing chart instance if it exists
+        if (chartInstance) {
+            chartInstance.destroy();
+        }
+
+        chartInstance = new Chart(ctx, {
             type: chartType,
             data: {
                 labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],

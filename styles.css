@@ -150,7 +150,7 @@ label {
 }
 /* Add these styles to your existing CSS file */
 .dropdown {
-    position: relative; /* Ensure dropdown-content aligns to this container */
+    position: relative;
     display: inline-block;
 }
 
@@ -160,20 +160,18 @@ label {
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1000; /* Ensure dropdown is above other elements */
+    z-index: 1000;
     top: 100%; /* Position below the button */
     left: 0; /* Align with the left edge of the parent */
-    transform: translateX(0); /* Remove unnecessary shifting */
-    transform-origin: top left; /* Adjust origin to match alignment */
-    overflow: visible; /* Prevent clipping */
+    right: auto; /* Ensure alignment to the left unless adjusted */
+    transform: translateX(0); /* Reset unnecessary transformations */
+    transform-origin: top left; /* Adjust origin for better alignment */
 }
 
 .dropdown:hover .dropdown-content {
     display: block;
-    /* Ensure dropdown stays within viewport */
-    right: auto;
-    left: auto;
 }
+
 
 .dropdown-content a {
     color: black;

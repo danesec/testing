@@ -15,13 +15,15 @@ header {
 }
 
 #financialSummary {
-    margin: 20px auto;
-    text-align: center;
+    margin: 20px 0;
+    text-align: left; /* Change to left align */
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
+    max-width: 100%;
+    width: 75%;
+    margin-left: auto; /* Align to the right */
 }
 
 #financialSummary p {
@@ -29,13 +31,15 @@ header {
 }
 
 section {
-    margin: 20px auto;
+    margin: 20px 0;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
-    overflow: hidden; /* Add this to ensure the section expands with the table content */
+    max-width: 100%;
+    width: 75%;
+    margin-left: auto; /* Align to the right */
+    overflow: hidden; /* Ensures the section expands with the table content */
 }
 
 h2 {

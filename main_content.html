@@ -1,5 +1,5 @@
 <main>
-     <script src="charts.js"></script>
+    <script src="charts.js"></script>
     <section id="financialSummary">
         <div style="display: flex; justify-content: space-between;">
             <div>
@@ -11,21 +11,27 @@
                 <canvas id="myChart" width="400" height="400"></canvas>
             </div>
         </div>
-        <div>
-            <label for="chartType">Chart Type:</label>
-            <select id="chartType">
-                <option value="bar">Bar</option>
-                <option value="pie">Pie</option>
-                <option value="line">Line</option>
-            </select>
-            <label for="filterType">Filter By Type:</label>
-            <select id="filterType">
-                <option value="all">All</option>
-                <option value="revenue">Revenue</option>
-                <option value="expenses">Expenses</option>
-            </select>
+        <!-- Move dropdowns here -->
+        <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+            <div>
+                <label for="chartType">Chart Type:</label>
+                <select id="chartType">
+                    <option value="bar">Bar</option>
+                    <option value="pie">Pie</option>
+                    <option value="line">Line</option>
+                </select>
+            </div>
+            <div>
+                <label for="filterType">Filter By Type:</label>
+                <select id="filterType">
+                    <option value="all">All</option>
+                    <option value="Donation">Donation</option>
+                    <option value="Catering">Catering</option>
+                </select>
+            </div>
         </div>
     </section>
+    <!-- Rest of the content remains the same -->
     <section id="revenueSection">
         <h2>Revenue</h2>
         <input type="text" id="revenueSearch" placeholder="Search by name, receipt, or contact" aria-label="Search Revenue">
@@ -114,7 +120,5 @@
             </tbody>
         </table>
         <!-- Add Revenue Modal -->
-
     </section>
-    
 </main>

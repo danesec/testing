@@ -60,24 +60,33 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody id="revenueTableBody">
-                <!-- Default Revenue Entries -->
-                <tr class="unpaid">
-                    <td>Example Type</td>
-                    <td>Example Date</td>
-                    <td>Example Receipt</td>
-                    <td>Example Payment</td>
-                    <td>Example Name</td>
-                    <td>Example Contact</td>
-                    <td>Example Subtotal</td>
-                    <td>Example Fee</td>
-                    <td>Example Notes</td>
-                    <td class="status">Unpaid</td>
-                    <td>
-                        <button class="toggleStatusBtn">Toggle Status</button>
-                    </td>
-                </tr>
-            </tbody>
+<!-- Existing table structure remains the same, only the actions column is modified -->
+<tbody id="revenueTableBody">
+    <!-- Default Revenue Entries -->
+    <tr class="unpaid">
+        <td>Example Type</td>
+        <td>Example Date</td>
+        <td>Example Receipt</td>
+        <td>Example Payment</td>
+        <td>Example Name</td>
+        <td>Example Contact</td>
+        <td>Example Subtotal</td>
+        <td>Example Fee</td>
+        <td>Example Notes</td>
+        <td class="status">Unpaid</td>
+        <td>
+            <div class="dropdown">
+                <button class="dropbtn">Actions</button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="markAsPaid(this)">Mark as Paid</a>
+                    <a href="#" onclick="markAsUnpaid(this)">Mark as Unpaid</a>
+                    <a href="#" onclick="editEntry(this)">Edit</a>
+                    <a href="#" onclick="deleteEntry(this)">Delete</a>
+                </div>
+            </div>
+        </td>
+    </tr>
+</tbody>
         </table>
     </section>
 

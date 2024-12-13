@@ -148,26 +148,26 @@ label {
 }
 /* Add these styles to your existing CSS file */
 .dropdown {
-    position: relative;
+    position: relative; /* Ensure dropdown-content aligns to this container */
     display: inline-block;
 }
 
-/* Ensure dropdown menu is within viewport and aligns correctly */
 .dropdown-content {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 10; /* Ensure dropdown is on top of other elements */
-    right: 0; /* Align dropdown to the right of the button */
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 10; /* Ensure dropdown is above other elements */
+    top: 100%; /* Position below the button */
+    left: 0; /* Align with the left edge of the parent */
+    transform: translateX(0); /* Remove unnecessary shifting */
+    transform-origin: top left; /* Adjust origin to match alignment */
+    overflow: visible; /* Prevent clipping */
 }
 
 .dropdown:hover .dropdown-content {
     display: block;
-    /* Ensure dropdown stays within viewport */
-    transform: translateX(-100%);
-    transform-origin: top right;
 }
 
 .dropdown-content a {
@@ -181,10 +181,6 @@ label {
     background-color: #f1f1f1;
 }
 
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
 .dropbtn {
     background-color: #4CAF50;
     color: white;
@@ -196,3 +192,4 @@ label {
 .dropbtn:hover {
     background-color: #3e8e41;
 }
+

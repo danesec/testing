@@ -1,12 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
-    if (document.getElementById('chartType') && document.getElementById('filterType')) {
-        drawCharts();
+    // Wait for a short delay to ensure elements are present in the DOM
+    setTimeout(() => {
+        if (document.getElementById('chartType') && document.getElementById('filterType')) {
+            drawCharts();
 
-        document.getElementById('chartType').addEventListener('change', drawCharts);
-        document.getElementById('filterType').addEventListener('change', drawCharts);
-    } else {
-        console.error('Required elements not found in the DOM');
-    }
+            document.getElementById('chartType').addEventListener('change', drawCharts);
+            document.getElementById('filterType').addEventListener('change', drawCharts);
+        } else {
+            console.error('Required elements not found in the DOM');
+        }
+    }, 100); // 100ms delay
 });
 
 function drawCharts() {

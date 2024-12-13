@@ -257,7 +257,7 @@ function populateTable(tableBodyId, entries) {
     entries.forEach(entry => {
         const row = document.createElement('tr');
         row.classList.add(entry.status === 'Paid' ? 'paid' : 'unpaid');
-        
+
         row.innerHTML = `
             <td>${entry.type}</td>
             <td>${entry.date}</td>
@@ -270,26 +270,21 @@ function populateTable(tableBodyId, entries) {
             <td>${entry.notes}</td>
             <td class="status">${entry.status}</td>
             <td>
-                <button class="toggleStatusBtn" onclick="toggleStatus(this)">Toggle Status</button>
+                <div class="dropdown">
+                    <button class="dropbtn">Actions</button>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="markAsPaid(this)">Mark as Paid</a>
+                        <a href="#" onclick="markAsUnpaid(this)">Mark as Unpaid</a>
+                        <a href="#" onclick="editEntry(this)">Edit</a>
+                        <a href="#" onclick="deleteEntry(this)">Delete</a>
+                    </div>
+                </div>
             </td>
         `;
         tableBody.appendChild(row);
     });
 }
 
-function toggleStatus(element) {
-    const row = element.closest('tr');
-    const statusCell = row.querySelector('.status');
-    if (statusCell.textContent === 'Paid') {
-        statusCell.textContent = 'Unpaid';
-        row.classList.remove('paid');
-        row.classList.add('unpaid');
-    } else {
-        statusCell.textContent = 'Paid';
-        row.classList.remove('unpaid');
-        row.classList.add('paid');
-    }
-}
 function markAsPaid(element) {
     const row = element.closest('tr');
     const statusCell = row.querySelector('.status');
@@ -330,4 +325,35 @@ function deleteEntry(element) {
     if (typeof drawCharts === 'function') {
         drawCharts();
     }
+}
+
+function updateSummary() {
+    const revenueTotal = calculateTotal('revenueTableBody');
+    const expenseTotal = calculateTotal('expenseTableBody');
+
+    const revenueSubtotalElement = document.getElementById('revenueSubtotal');
+    const expensesSubtotalElement = document.getElementById('expensesSubtotal');
+    const totalBalanceElement = document.getElementById('totalBalance');
+
+    if (revenueSubtotalElement) {
+        revenueSubtotalElement.textContent = revenueTotal.toFixed(2);
+    }
+    if (expensesSubtotalElement) {
+        expensesSubtotalElement.textContent = expenseTotal.toFixed(2);
+    }
+    if (totalBalanceElement) {
+        totalBalanceElement.textContent = (revenueTotal - expenseTotal).toFixed(2);
+    }
+}
+
+function calculateTotal(tableBodyId) {
+    const rows = document.querySelectorAll(`#${tableBodyId} tr`);
+    let total = 0;
+
+    rows.forEach(row => {
+        const amount = parseFloat(row.cells[6].textContent.replace('$', ''));
+        total += amount;
+    });
+
+    return total;
 }

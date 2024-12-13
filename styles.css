@@ -4,6 +4,7 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
+    overflow: overlay;
 }
 
 header {
@@ -39,7 +40,7 @@ section {
     max-width: 100%;
     width: 75%;
     margin-left: auto; /* Align to the right */
-    overflow: hidden; /* Ensures the section expands with the table content */
+    overflow: overlay; /* Ensures the section expands with the table content */
 }
 
 h2 {
@@ -54,7 +55,7 @@ table {
     border-collapse: collapse;
     background-color: #fff;
     border-radius: 8px;
-    overflow: hidden;
+    overflow: overlay;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 

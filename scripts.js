@@ -357,3 +357,9 @@ function calculateTotal(tableBodyId) {
 
     return total;
 }
+const dropdown = document.querySelector('.dropdown-menu');
+const rect = dropdown.getBoundingClientRect();
+if (rect.right > window.innerWidth) {
+    dropdown.style.left = 'auto';
+    dropdown.style.right = '0';
+}

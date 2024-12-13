@@ -357,11 +357,15 @@ function calculateTotal(tableBodyId) {
 
     return total;
 }
-const dropdown = document.querySelector('.dropdown-menu');
-if (dropdown) {
-    const rect = dropdown.getBoundingClientRect();
-    if (rect.right > window.innerWidth) {
-        dropdown.style.left = 'auto';
-        dropdown.style.right = '0';
-    }
-}
+/* JavaScript to adjust positioning if needed */
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdowns = document.querySelectorAll('.dropdown-content');
+
+    dropdowns.forEach(dropdown => {
+        const rect = dropdown.getBoundingClientRect();
+        if (rect.right > window.innerWidth) {
+            dropdown.style.left = 'auto';
+            dropdown.style.right = '0';
+        }
+    });
+});

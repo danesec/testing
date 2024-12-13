@@ -250,6 +250,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function populateTable(tableBodyId, entries) {
     const tableBody = document.getElementById(tableBodyId);
+    if (!tableBody) {
+        console.error(`Table body with ID '${tableBodyId}' not found.`);
+        return;
+    }
     entries.forEach(entry => {
         const row = document.createElement('tr');
         row.classList.add(entry.status === 'Paid' ? 'paid' : 'unpaid');

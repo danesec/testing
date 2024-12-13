@@ -152,6 +152,7 @@ label {
     display: inline-block;
 }
 
+/* Ensure dropdown menu is within viewport */
 .dropdown-content {
     display: none;
     position: absolute;
@@ -159,6 +160,14 @@ label {
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    right: 0; /* Align dropdown to the right of the button */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    /* Check if dropdown goes beyond viewport and adjust position */
+    transform: translateX(-100%);
+    transform-origin: top right;
 }
 
 .dropdown-content a {

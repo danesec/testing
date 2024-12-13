@@ -138,3 +138,11 @@ label {
     display: block;
     margin-top: 10px;
 }
+
+.paid {
+    background-color: lightgreen;
+}
+
+.unpaid {
+    background-color: lightcoral;
+}

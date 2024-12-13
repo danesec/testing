@@ -9,7 +9,6 @@
             </div>
             <div id="chartsContainer" style="width: 400px; height: 400px;">
                 <canvas id="myChart" width="400" height="400"></canvas>
-                <!-- Move chart type dropdown here -->
                 <div style="display: flex; justify-content: start; align-items: center; margin-top: 10px;">
                     <label for="chartType" style="margin-right: 5px;">Chart Type:</label>
                     <select id="chartType">
@@ -20,24 +19,29 @@
                 </div>
             </div>
         </div>
-        <!-- Filter By Type dropdown to the right -->
         <div style="display: flex; justify-content: end; align-items: center; margin-top: 10px;">
             <label for="filterType" style="margin-right: 5px;">Filter By Type:</label>
             <select id="filterType">
                 <option value="all">All</option>
+                <option value="Registration">Registration</option>
+                <option value="Sponsorship">Sponsorship</option>
                 <option value="Donation">Donation</option>
+                <option value="Auction">Auction</option>
+                <option value="Other">Other</option>
                 <option value="Catering">Catering</option>
             </select>
         </div>
     </section>
-    <!-- Rest of the content remains the same -->
     <section id="revenueSection">
         <h2>Revenue</h2>
         <input type="text" id="revenueSearch" placeholder="Search by name, receipt, or contact" aria-label="Search Revenue">
         <select id="revenueTypeFilter">
             <option value="">All Types</option>
+            <option value="Registration">Registration</option>
+            <option value="Sponsorship">Sponsorship</option>
             <option value="Donation">Donation</option>
-            <!-- Add other types as needed -->
+            <option value="Auction">Auction</option>
+            <option value="Other">Other</option>
         </select>
         <button id="addRevenueBtn">Add Revenue</button>
         <table id="revenueTable">
@@ -56,9 +60,8 @@
                 </tr>
             </thead>
             <tbody id="revenueTableBody">
-                <!-- Default Revenue Entries -->
                 <tr>
-                    <td>Donation</td>
+                    <td>Registration</td>
                     <td>2024-12-11</td>
                     <td>R001</td>
                     <td>Credit Card</td>
@@ -66,7 +69,7 @@
                     <td>john@example.com</td>
                     <td>$150.00</td>
                     <td>$5.00</td>
-                    <td>First Donation</td>
+                    <td>First Registration</td>
                     <td>
                         <button class="editBtn">Edit</button>
                         <button class="deleteBtn">Delete</button>
@@ -80,8 +83,10 @@
         <input type="text" id="expenseSearch" placeholder="Search by name, receipt, or contact" aria-label="Search Expenses">
         <select id="expenseTypeFilter">
             <option value="">All Types</option>
+            <option value="Registration">Registration</option>
+            <option value="Credit Card">Credit Card</option>
             <option value="Catering">Catering</option>
-            <!-- Add other types as needed -->
+            <option value="Other">Other</option>
         </select>
         <button id="addExpenseBtn">Add Expense</button>
         <table id="expenseTable">
@@ -100,7 +105,6 @@
                 </tr>
             </thead>
             <tbody id="expenseTableBody">
-                <!-- Default Expenses Entries -->
                 <tr>
                     <td>Catering</td>
                     <td>2024-12-10</td>
@@ -118,6 +122,5 @@
                 </tr>
             </tbody>
         </table>
-        <!-- Add Revenue Modal -->
     </section>
 </main>

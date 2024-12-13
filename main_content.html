@@ -1,36 +1,7 @@
 <main>
     <script src="charts.js"></script>
     <section id="financialSummary">
-        <div style="display: flex; justify-content: space-between;">
-            <div>
-                <p><strong>Total Revenue:</strong> $<span id="revenueSubtotal">0.00</span></p>
-                <p><strong>Total Expenses:</strong> $<span id="expensesSubtotal">0.00</span></p>
-                <p><strong>Net Balance:</strong> $<span id="totalBalance">0.00</span></p>
-            </div>
-            <div id="chartsContainer" style="width: 400px; height: 400px;">
-                <canvas id="myChart" width="400" height="400"></canvas>
-                <div style="display: flex; justify-content: start; align-items: center; margin-top: 10px;">
-                    <label for="chartType" style="margin-right: 5px;">Chart Type:</label>
-                    <select id="chartType">
-                        <option value="bar">Bar</option>
-                        <option value="pie">Pie</option>
-                        <option value="line">Line</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div style="display: flex; justify-content: end; align-items: center; margin-top: 10px;">
-            <label for="filterType" style="margin-right: 5px;">Filter By Type:</label>
-            <select id="filterType">
-                <option value="all">All</option>
-                <option value="Registration">Registration</option>
-                <option value="Sponsorship">Sponsorship</option>
-                <option value="Donation">Donation</option>
-                <option value="Auction">Auction</option>
-                <option value="Other">Other</option>
-                <option value="Catering">Catering</option>
-            </select>
-        </div>
+        <!-- Financial Summary Section -->
     </section>
     <section id="revenueSection">
         <h2>Revenue</h2>
@@ -60,21 +31,7 @@
                 </tr>
             </thead>
             <tbody id="revenueTableBody">
-                <tr>
-                    <td>Registration</td>
-                    <td>2024-12-11</td>
-                    <td>R001</td>
-                    <td>Credit Card</td>
-                    <td>John Doe</td>
-                    <td>john@example.com</td>
-                    <td>$150.00</td>
-                    <td>$5.00</td>
-                    <td>First Registration</td>
-                    <td>
-                        <button class="editBtn">Edit</button>
-                        <button class="deleteBtn">Delete</button>
-                    </td>
-                </tr>
+                <!-- Default Revenue Entries -->
             </tbody>
         </table>
     </section>
@@ -105,19 +62,19 @@
                 </tr>
             </thead>
             <tbody id="expenseTableBody">
+                <!-- Default Credit Card Entry -->
                 <tr>
-                    <td>Catering</td>
-                    <td>2024-12-10</td>
-                    <td>E001</td>
-                    <td>Cash</td>
-                    <td>Jane Smith</td>
-                    <td>jane@example.com</td>
-                    <td>$100.00</td>
-                    <td>$0.00</td>
-                    <td>Event Catering</td>
+                    <td>Credit Card</td>
+                    <td>Auto</td>
+                    <td>Auto</td>
+                    <td>Auto</td>
+                    <td>Auto</td>
+                    <td>Auto</td>
+                    <td id="creditCardSubtotal"></td>
+                    <td id="creditCardFee"></td>
+                    <td>Credit Card Fees</td>
                     <td>
-                        <button class="editBtn">Edit</button>
-                        <button class="deleteBtn">Delete</button>
+                        <button class="editBtn" onclick="editCreditCard()">Edit</button>
                     </td>
                 </tr>
             </tbody>
